@@ -1,0 +1,9 @@
+{
+	"scripts": {
+		"start": "node packages/server/server",
+		"start:dev": "lerna run --parallel start"
+	},
+	"devDependencies": {
+		"lerna": "^2.11.0"
+	}
+}
