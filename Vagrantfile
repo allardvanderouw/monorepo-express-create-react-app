@@ -5,12 +5,12 @@ Vagrant.configure(2) do |config|
   config.vm.box = "ubuntu/xenial64"
 
   config.vm.provider "virtualbox" do |vb|
-    vb.name = "lerna-monorepo-express-create-react-app"
+    vb.name = "monorepo-express-create-react-app"
     vb.memory = 1024
     vb.customize ["modifyvm", :id, "--uartmode1", "disconnected"]
   end
 
-  config.vm.hostname = "lerna-monorepo-express-create-react-app"
+  config.vm.hostname = "monorepo-express-create-react-app"
 
   config.vm.provision "shell", path: "vagrant-manifests/setup.sh", env: {
     "PORT" => PORT_SERVER,

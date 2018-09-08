@@ -1,9 +1,27 @@
 {
-	"scripts": {
-		"start": "node packages/server/server",
-		"start:dev": "lerna run --parallel start"
-	},
-	"devDependencies": {
-		"lerna": "^2.11.0"
-	}
+  "name": "monorepo-express-create-react-app",
+  "version": "0.0.1",
+  "main": "server.js",
+  "repository": "https://allardvanderouw@github.com/allardvanderouw/monorepo-express-create-react-app.git",
+  "author": "Allard van der Ouw <allard.van.der.ouw@oliver-it.nl>",
+  "license": "MIT",
+  "scripts": {
+    "lint": "eslint .",
+    "test": "rimraf coverage && yarn run lint && yarn run test:report && yarn run test:coverage",
+    "test:coverage": "mkdir -p coverage/all && cp coverage/*/*.json coverage/all && nyc report --temp-directory=coverage/all --reporter html --reporter text && nyc check-coverage --temp-directory=coverage/all",
+    "test:report": "nyc --all --temp-directory=coverage/integration --reporter=text-summary mocha --timeout=10000 --reporter=spec $(find test -name '*.test.js')",
+    "nyc:test": "nyc mocha",
+    "nyc:report": "nyc report --reporter=text-lcov > coverage.lcov && codecov",
+    "create:user": "node scripts/create-user.js"
+  },
+  "devDependencies": {
+    "eslint": "^5.5.0",
+    "eslint-config-airbnb": "^17.1.0",
+    "eslint-plugin-import": "^2.14.0"
+  },
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.3",
+    "mongodb": "^3.1.4"
+  }
 }
