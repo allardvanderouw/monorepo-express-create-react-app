@@ -2,11 +2,11 @@
   "name": "monorepo-express-create-react-app",
   "version": "0.0.1",
   "private": true,
-  "main": "workspace-server/server",
   "repository": "https://allardvanderouw@github.com/allardvanderouw/monorepo-express-create-react-app.git",
   "author": "Allard van der Ouw <allard.van.der.ouw@oliver-it.nl>",
   "license": "MIT",
   "scripts": {
+    "start": "node workspace-server/server",
     "lint": "eslint .",
     "test": "rimraf coverage && yarn run lint && yarn run test:report && yarn run test:coverage",
     "test:coverage": "mkdir -p coverage/all && cp coverage/*/*.json coverage/all && nyc report --temp-directory=coverage/all --reporter html --reporter text && nyc check-coverage --temp-directory=coverage/all",

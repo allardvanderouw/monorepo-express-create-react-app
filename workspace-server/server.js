@@ -20,6 +20,9 @@ const startServer = async ({
   // Add Routers
   app.use('/api/todos', todosRouter);
 
+  // Add Client
+  app.use(express.static(`${__dirname}/../workspace-client/build`));
+
   const server = await app.listen(port);
   console.info(`Server started and listening on port ${port}`);
 
