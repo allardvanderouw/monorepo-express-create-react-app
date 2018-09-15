@@ -1,7 +1,8 @@
 {
   "name": "monorepo-express-create-react-app",
   "version": "0.0.1",
-  "main": "server.js",
+  "private": true,
+  "main": "workspace-server/server",
   "repository": "https://allardvanderouw@github.com/allardvanderouw/monorepo-express-create-react-app.git",
   "author": "Allard van der Ouw <allard.van.der.ouw@oliver-it.nl>",
   "license": "MIT",
@@ -14,15 +15,5 @@
     "nyc:report": "nyc report --reporter=text-lcov > coverage.lcov && codecov",
     "create:user": "node scripts/create-user.js"
   },
-  "devDependencies": {
-    "eslint": "^5.5.0",
-    "eslint-config-airbnb": "^17.1.0",
-    "eslint-plugin-import": "^2.14.0"
-  },
-  "dependencies": {
-    "body-parser": "^1.18.3",
-    "express": "^4.16.3",
-    "mongodb": "^3.1.4",
-    "newrelic": "^4.8.1"
-  }
+  "workspaces": ["workspace-server", "workspace-client"]
 }
