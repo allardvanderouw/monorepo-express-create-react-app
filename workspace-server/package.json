@@ -1,6 +1,12 @@
 {
   "name": "workspace-server",
   "version": "0.0.1",
+  "scripts": {
+    "lint": "eslint .",
+    "test": "rimraf coverage && yarn run lint && yarn run test:report && yarn run test:coverage",
+    "test:coverage": "mkdir -p coverage/all && cp coverage/*/*.json coverage/all && nyc report --temp-directory=coverage/all --reporter html --reporter text && nyc check-coverage --temp-directory=coverage/all",
+    "test:report": "nyc --temp-directory=coverage/integration --reporter=text-summary mocha --timeout=10000 --reporter=spec $(find test -name '*.test.js')"
+  },
   "devDependencies": {
     "eslint": "^5.5.0",
     "eslint-config-airbnb": "^17.1.0",

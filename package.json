@@ -7,13 +7,15 @@
   "license": "MIT",
   "scripts": {
     "start": "node workspace-server/server",
-    "lint": "eslint .",
-    "test": "rimraf coverage && yarn run lint && yarn run test:report && yarn run test:coverage",
-    "test:coverage": "mkdir -p coverage/all && cp coverage/*/*.json coverage/all && nyc report --temp-directory=coverage/all --reporter html --reporter text && nyc check-coverage --temp-directory=coverage/all",
-    "test:report": "nyc --all --temp-directory=coverage/integration --reporter=text-summary mocha --timeout=10000 --reporter=spec $(find test -name '*.test.js')",
-    "nyc:test": "nyc mocha",
-    "nyc:report": "nyc report --reporter=text-lcov > coverage.lcov && codecov",
-    "create:user": "node scripts/create-user.js"
+    "server:lint": "cd workspace-server && yarn lint",
+    "server:test": "cd workspace-server && yarn test",
+    "server:test:coverage": "cd workspace-server && yarn test:coverage",
+    "server:test:report": "cd workspace-server && yarn test:report"
   },
-  "workspaces": ["workspace-server", "workspace-client"]
+  "workspaces": ["workspace-server", "workspace-client"],
+  "nyc": {
+    "exclude": [
+      "**/test"
+    ]
+  }
 }
