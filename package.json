@@ -6,11 +6,12 @@
   "author": "Allard van der Ouw <allard.van.der.ouw@oliver-it.nl>",
   "license": "MIT",
   "scripts": {
-    "start": "node workspace-server/server",
-    "server:lint": "cd workspace-server && yarn lint",
-    "server:test": "cd workspace-server && yarn test",
-    "server:test:coverage": "cd workspace-server && yarn test:coverage",
-    "server:test:report": "cd workspace-server && yarn test:report"
+    "start": "nf start",
+    "test": "yarn server:test",
+    "server:lint": "yarn workspace workspace-server lint",
+    "server:test": "yarn workspace workspace-server test",
+    "server:test:coverage": "yarn workspace workspace-server test:coverage",
+    "server:test:report": "yarn workspace workspace-server test:report"
   },
   "workspaces": ["workspace-server", "workspace-client"],
   "nyc": {

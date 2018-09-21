@@ -1,21 +1,13 @@
-const { MongoClient } = require('mongodb');
-const express = require('express');
-const bodyParser = require('body-parser');
+const dbBurito = require('./app/buritos/mongodb-burito');
+const expressBurito = require('./app/buritos/express-burito');
+const logger = require('./app/buritos/winston-burito');
 
-const { router: todosRouter, initialize: initializeTodos } = require('./app/todos');
+const { router: todosRouter } = require('./app/todos');
 
-let dbConnection;
-let db;
-let server;
-
-const stopServer = async () => {
-  if (dbConnection) {
-    dbConnection.removeAllListeners();
-    await dbConnection.close();
-  }
-  if (server) {
-    await server.close();
-  }
+const stopServer = async (signal) => {
+  logger.info(`Stopping server with signal: ${signal}`);
+  await expressBurito.close();
+  await dbBurito.close();
 };
 
 const startServer = async ({
@@ -23,30 +15,27 @@ const startServer = async ({
   mongoDbUri = process.env.MONGODB_URI,
 } = {}) => {
   try {
-    const app = express();
-
     // Connect to Mongo DB
-    dbConnection = await MongoClient.connect(mongoDbUri, { useNewUrlParser: true });
-    db = dbConnection.db();
+    const db = await dbBurito.connect(mongoDbUri);
 
-    // Configure app
-    app.use(bodyParser.json()); // parse json data to req.body
-
-    // Initialize
-    await initializeTodos({ db });
+    // Create Express App
+    const app = expressBurito.create();
 
     // Add Routers
     app.use('/api/todos', todosRouter);
 
-    // Add Client
-    app.use(express.static(`${__dirname}/../workspace-client/build`));
+    // Start App
+    const server = await expressBurito.start(port);
+    logger.info(`Server started and listening on port ${port}`);
 
-    server = await app.listen(port);
-    console.info(`Server started and listening on port ${port}`);
+    // Graceful shutdown
+    process.on('SIGINT', () => stopServer('SIGINT'));
+    process.on('SIGTERM', () => stopServer('SIGTERM'));
+    process.on('uncaughtException', error => stopServer('uncaughtException', error));
 
     return { server, db };
   } catch (error) {
-    console.error(`Error starting server: ${error}`);
+    logger.error(`Error starting server: ${error}`);
     await stopServer();
     throw error;
   }

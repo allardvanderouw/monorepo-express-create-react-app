@@ -1,27 +1,23 @@
 const { ObjectID } = require('mongodb');
 
+const dbBurito = require('../buritos/mongodb-burito');
+
 const collectionName = 'todos';
 
-let db;
-
-const initializeTodosStore = ({ db: _db }) => {
-  db = _db;
-};
-
 const createTodo = async (todo) => {
-  const { ops } = await db.collection(collectionName).insertOne(todo, { w: 1 });
+  const { ops } = await dbBurito.get().collection(collectionName).insertOne(todo, { w: 1 });
   return ops[0];
 };
 
 const readTodoById = async (id) => {
   const query = { _id: new ObjectID(id) };
-  return db.collection(collectionName).findOne(query);
+  return dbBurito.get().collection(collectionName).findOne(query);
 };
 
 const updateTodoById = async (id, todo) => {
   const query = { _id: new ObjectID(id) };
   const { _id, ...todoWithoutId } = todo;
-  const { value } = await db.collection(collectionName).findOneAndReplace(query, {
+  const { value } = await dbBurito.get().collection(collectionName).findOneAndReplace(query, {
     _id: new ObjectID(_id),
     ...todoWithoutId,
   }, {
@@ -32,14 +28,13 @@ const updateTodoById = async (id, todo) => {
 
 const deleteTodoById = async (id) => {
   const query = { _id: new ObjectID(id) };
-  const { result } = await db.collection(collectionName).deleteOne(query, { w: 1 });
+  const { result } = await dbBurito.get().collection(collectionName).deleteOne(query, { w: 1 });
   return result;
 };
 
-const findTodos = async query => db.collection(collectionName).find(query).toArray();
+const findTodos = async query => dbBurito.get().collection(collectionName).find(query).toArray();
 
 module.exports = {
-  initializeTodosStore,
   createTodo,
   readTodoById,
   updateTodoById,

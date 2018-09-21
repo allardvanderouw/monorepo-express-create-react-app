@@ -1,5 +1,6 @@
 const express = require('express');
 
+const expressBurito = require('../buritos/express-burito');
 const api = require('./todos-api');
 
 const router = express.Router();
@@ -10,12 +11,7 @@ router.post('/', async (req, res) => {
     const result = await api.createTodo(req.body);
     res.status(200).json(result);
   } catch (error) {
-    if (error && error.isBoom) {
-      const { statusCode, payload } = error.output;
-      res.status(statusCode).json(payload);
-    } else {
-      res.status(500).json({ error });
-    }
+    expressBurito.handleError(res, error);
   }
 });
 
@@ -25,12 +21,7 @@ router.get('/:id', async (req, res) => {
     const result = await api.readTodo(req.params.id);
     res.status(200).json(result);
   } catch (error) {
-    if (error && error.isBoom) {
-      const { statusCode, payload } = error.output;
-      res.status(statusCode).json(payload);
-    } else {
-      res.status(500).json({ error });
-    }
+    expressBurito.handleError(res, error);
   }
 });
 
@@ -40,12 +31,7 @@ router.put('/:id', async (req, res) => {
     const result = await api.updateTodo(req.params.id, req.body);
     res.status(200).json(result);
   } catch (error) {
-    if (error && error.isBoom) {
-      const { statusCode, payload } = error.output;
-      res.status(statusCode).json(payload);
-    } else {
-      res.status(500).json({ error });
-    }
+    expressBurito.handleError(res, error);
   }
 });
 
@@ -55,12 +41,7 @@ router.delete('/:id', async (req, res) => {
     await api.deleteTodo(req.params.id);
     res.status(204).end();
   } catch (error) {
-    if (error && error.isBoom) {
-      const { statusCode, payload } = error.output;
-      res.status(statusCode).json(payload);
-    } else {
-      res.status(500).json({ error });
-    }
+    expressBurito.handleError(res, error);
   }
 });
 
@@ -70,12 +51,7 @@ router.get('/', async (req, res) => {
     const result = await api.findTodos();
     res.status(200).json(result);
   } catch (error) {
-    if (error && error.isBoom) {
-      const { statusCode, payload } = error.output;
-      res.status(statusCode).json(payload);
-    } else {
-      res.status(500).json({ error });
-    }
+    expressBurito.handleError(res, error);
   }
 });
 
