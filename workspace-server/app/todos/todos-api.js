@@ -10,10 +10,10 @@ const createTodo = async (todo) => {
   }
 };
 
-const readTodo = async (id) => {
+const readTodo = async (_id) => {
   let result;
   try {
-    result = await store.readTodoById(id);
+    result = await store.readTodoById(_id);
   } catch (error) {
     throw Boom.badImplementation();
   }
@@ -25,10 +25,10 @@ const readTodo = async (id) => {
   return result;
 };
 
-const updateTodo = async (id, todo) => {
+const updateTodo = async (_id, todo) => {
   let result;
   try {
-    result = await store.updateTodoById(id, todo);
+    result = await store.updateTodoById(_id, todo);
   } catch (error) {
     throw Boom.badImplementation();
   }
@@ -40,10 +40,10 @@ const updateTodo = async (id, todo) => {
   return result;
 };
 
-const deleteTodo = async (id) => {
+const deleteTodo = async (_id) => {
   let result;
   try {
-    result = await store.deleteTodoById(id);
+    result = await store.deleteTodoById(_id);
   } catch (error) {
     throw Boom.badImplementation();
   }

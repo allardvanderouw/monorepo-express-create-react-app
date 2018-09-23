@@ -1,6 +1,6 @@
 const express = require('express');
 
-const expressBurito = require('../buritos/express-burito');
+const expressAdapter = require('../adapters/express-adapter');
 const api = require('./todos-api');
 
 const router = express.Router();
@@ -11,37 +11,37 @@ router.post('/', async (req, res) => {
     const result = await api.createTodo(req.body);
     res.status(200).json(result);
   } catch (error) {
-    expressBurito.handleError(res, error);
+    expressAdapter.handleError(res, error);
   }
 });
 
 // Read todo
-router.get('/:id', async (req, res) => {
+router.get('/:_id', async (req, res) => {
   try {
-    const result = await api.readTodo(req.params.id);
+    const result = await api.readTodo(req.params._id);
     res.status(200).json(result);
   } catch (error) {
-    expressBurito.handleError(res, error);
+    expressAdapter.handleError(res, error);
   }
 });
 
 // Update todo
-router.put('/:id', async (req, res) => {
+router.put('/:_id', async (req, res) => {
   try {
-    const result = await api.updateTodo(req.params.id, req.body);
+    const result = await api.updateTodo(req.params._id, req.body);
     res.status(200).json(result);
   } catch (error) {
-    expressBurito.handleError(res, error);
+    expressAdapter.handleError(res, error);
   }
 });
 
 // Delete todo
-router.delete('/:id', async (req, res) => {
+router.delete('/:_id', async (req, res) => {
   try {
-    await api.deleteTodo(req.params.id);
+    await api.deleteTodo(req.params._id);
     res.status(204).end();
   } catch (error) {
-    expressBurito.handleError(res, error);
+    expressAdapter.handleError(res, error);
   }
 });
 
@@ -51,7 +51,7 @@ router.get('/', async (req, res) => {
     const result = await api.findTodos();
     res.status(200).json(result);
   } catch (error) {
-    expressBurito.handleError(res, error);
+    expressAdapter.handleError(res, error);
   }
 });
 

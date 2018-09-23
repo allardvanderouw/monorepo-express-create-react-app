@@ -1,13 +1,13 @@
-const dbBurito = require('./app/buritos/mongodb-burito');
-const expressBurito = require('./app/buritos/express-burito');
-const logger = require('./app/buritos/winston-burito');
+const dbAdapter = require('./app/adapters/mongodb-adapter');
+const expressAdapter = require('./app/adapters/express-adapter');
+const logger = require('./app/adapters/winston-adapter');
 
 const { router: todosRouter } = require('./app/todos');
 
 const stopServer = async (signal) => {
   logger.info(`Stopping server with signal: ${signal}`);
-  await expressBurito.close();
-  await dbBurito.close();
+  await expressAdapter.close();
+  await dbAdapter.close();
 };
 
 const startServer = async ({
@@ -16,16 +16,16 @@ const startServer = async ({
 } = {}) => {
   try {
     // Connect to Mongo DB
-    const db = await dbBurito.connect(mongoDbUri);
+    const db = await dbAdapter.connect(mongoDbUri);
 
     // Create Express App
-    const app = expressBurito.create();
-
-    // Add Routers
-    app.use('/api/todos', todosRouter);
+    expressAdapter.create([{
+      routePath: '/api/todos',
+      router: todosRouter,
+    }]);
 
     // Start App
-    const server = await expressBurito.start(port);
+    const server = await expressAdapter.start(port);
     logger.info(`Server started and listening on port ${port}`);
 
     // Graceful shutdown

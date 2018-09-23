@@ -35,7 +35,7 @@ describe('Todos REST API integration test', () => {
     });
   });
 
-  describe('GET /api/todos/:id', () => {
+  describe('GET /api/todos/:_id', () => {
     let createdTodo;
 
     before(async () => {
@@ -59,7 +59,7 @@ describe('Todos REST API integration test', () => {
     });
   });
 
-  describe('PUT /api/todos/:id', () => {
+  describe('PUT /api/todos/:_id', () => {
     let createdTodo;
 
     before(async () => {
@@ -89,7 +89,7 @@ describe('Todos REST API integration test', () => {
     });
   });
 
-  describe('DELETE /api/todos/:id', () => {
+  describe('DELETE /api/todos/:_id', () => {
     let createdTodo;
 
     before(async () => {

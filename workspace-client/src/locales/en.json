@@ -1,0 +1,23 @@
+{
+	"Api": {
+		"networkError": "Network error occurred",
+		"serverError": "Server error occurred"
+	},
+	"Main": {
+		"title": "Todos"
+	},
+	"Navigation": {
+		"todos": "Todos"
+	},
+	"Todos": {
+		"Filter": {
+			"search": "Search..."
+		},
+		"addNewTodo": "Add new",
+		"empty": "No todos found",
+		"loading": "Todos are loading...",
+		"notFoundDescription": "Todo not found",
+		"notFoundHeader": "Not found",
+		"unknownError": "Unknown error occurred"
+	}
+}
