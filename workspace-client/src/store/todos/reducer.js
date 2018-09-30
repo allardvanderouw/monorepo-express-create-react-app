@@ -1,5 +1,6 @@
 import { combineReducers } from 'redux';
 import actionTypes from './actionTypes';
+import todoActionTypes from '../todo/actionTypes';
 
 const initialTodosState = [];
 const todosReducer = (state = initialTodosState, action) => {
@@ -12,16 +13,7 @@ const todosReducer = (state = initialTodosState, action) => {
       return action.payload.todos;
     }
 
-    case actionTypes.FETCH_TODO_REQUEST: {
-      return state.map((todo) => {
-        if (todo._id === action.meta._id) {
-          return todo;
-        }
-        return todo;
-      });
-    }
-
-    case actionTypes.FETCH_TODO_SUCCESS: {
+    case todoActionTypes.SAVE_TODO_SUCCESS: {
       return state.map((todo) => {
         if (todo._id === action.payload.todo._id) {
           return action.payload.todo;
@@ -30,14 +22,12 @@ const todosReducer = (state = initialTodosState, action) => {
       });
     }
 
-    case actionTypes.FETCH_TODO_FAILURE: {
-      return state.map((todo) => {
-        if (todo._id === action.meta._id) {
-          const { isLoading, ...todoWithoutIsLoading } = todo;
-          return todoWithoutIsLoading;
-        }
-        return todo;
-      });
+    case todoActionTypes.ADD_TODO_SUCCESS: {
+      return state.concat(action.payload.todo);
+    }
+
+    case todoActionTypes.REMOVE_TODO_SUCCESS: {
+      return state.filter(({ _id }) => _id !== action.meta._id);
     }
 
     default: {
@@ -56,6 +46,7 @@ const metaReducer = (state = initialMetaState, action) => {
       return {
         ...state,
         isLoading: true,
+        error: '',
       };
     }
 
@@ -80,71 +71,7 @@ const metaReducer = (state = initialMetaState, action) => {
   }
 };
 
-const initialTodoMetaState = { isLoading: false, error: '' };
-const todosMetaReducer = (state = [], action) => {
-  switch (action.type) {
-    case actionTypes.FETCH_TODOS_SUCCESS: {
-      return action.payload.todos.map((todo) => {
-        const existingTodosMeta = state.find(({ _id }) => _id === todo._id);
-        if (existingTodosMeta) {
-          return {
-            ...existingTodosMeta,
-            isLoading: false,
-          };
-        }
-        return {
-          _id: todo._id,
-          ...initialTodoMetaState,
-        };
-      });
-    }
-
-    case actionTypes.FETCH_TODO_REQUEST: {
-      return state.map((todoMeta) => {
-        if (todoMeta._id === action.meta._id) {
-          return {
-            ...todoMeta,
-            isLoading: true,
-            error: '',
-          };
-        }
-        return todoMeta;
-      });
-    }
-
-    case actionTypes.FETCH_TODO_SUCCESS: {
-      return state.map((todoMeta) => {
-        if (todoMeta._id === action.payload.todo._id) {
-          return {
-            ...todoMeta,
-            isLoading: false,
-          };
-        }
-        return todoMeta;
-      });
-    }
-
-    case actionTypes.FETCH_TODO_FAILURE: {
-      return state.map((todoMeta) => {
-        if (todoMeta._id === action.meta._id) {
-          return {
-            ...todoMeta,
-            isLoading: false,
-            error: action.payload.message,
-          };
-        }
-        return todoMeta;
-      });
-    }
-
-    default: {
-      return state;
-    }
-  }
-};
-
 export default combineReducers({
   todos: todosReducer,
   meta: metaReducer,
-  todosMeta: todosMetaReducer,
 });

@@ -66,7 +66,7 @@ class SideMenu extends PureComponent {
             </IconButton>
           </ListItemSecondaryAction>
         </ListItem>
-        <ListItem divider button component={Link} to="/">
+        <ListItem button component={Link} to="/">
           <IconButton className={classes.menuIcon}>
             <ListIcon />
           </IconButton>

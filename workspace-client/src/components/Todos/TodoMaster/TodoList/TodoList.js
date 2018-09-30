@@ -42,21 +42,22 @@ class TodoList extends PureComponent {
       );
     }
 
+    let content;
     if (todos.length === 0) {
-      return (
-        <ListItem>
+      content = [(
+        <ListItem key='EmptyTodos'>
           <ListItemText primary={i18n.t('Todos:empty')} />
         </ListItem>
-      );
+      )];
+    } else {
+      content = todos.map(todo => (
+        <TodoListItem
+          key={todo._id}
+          todo={todo}
+          selected={todo._id === selectedTodoId}
+        />
+      ));
     }
-
-    const rows = todos.map(todo => (
-      <TodoListItem
-        key={todo._id}
-        todo={todo}
-        selected={todo._id === selectedTodoId}
-      />
-    ));
 
     const addNewTodo = (
       <ListItem key='AddNewTodo' button component={Link} to={'/new'}>
@@ -69,9 +70,11 @@ class TodoList extends PureComponent {
       </ListItem>
     );
 
+    content = content.concat(addNewTodo);
+
     return (
       <List disablePadding className={classes.content}>
-        {rows.concat(addNewTodo)}
+        {content}
       </List>
     );
   }

@@ -42,7 +42,7 @@ class TodoFilter extends PureComponent {
 
     return (
       <List className={classes.filter}>
-        <ListItem>
+        <ListItem divider>
           <TextField
             label={i18n.t('Todos:Filter:search')}
             className={classes.input}

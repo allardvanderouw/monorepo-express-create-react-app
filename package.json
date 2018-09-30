@@ -8,6 +8,8 @@
   "scripts": {
     "start": "nf start",
     "test": "yarn server:test",
+    "client:lint": "yarn workspace workspace-client lint",
+    "client:start": "yarn workspace workspace-client start",
     "server:lint": "yarn workspace workspace-server lint",
     "server:test": "yarn workspace workspace-server test",
     "server:test:coverage": "yarn workspace workspace-server test:coverage",

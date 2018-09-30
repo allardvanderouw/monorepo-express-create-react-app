@@ -5,7 +5,6 @@ import { BrowserRouter } from 'react-router-dom';
 import { createMuiTheme, MuiThemeProvider } from '@material-ui/core/styles';
 import { blue } from '@material-ui/core/colors';
 import i18n from 'i18next';
-import createHistory from 'history/createBrowserHistory';
 
 import AppContainer from './components/App/AppContainer';
 import locales from './locales';
@@ -26,14 +25,11 @@ const theme = createMuiTheme({ palette: { primary: blue } });
 // Initialize Redux store
 const store = configureStore();
 
-// Initialize Router history
-const history = createHistory();
-
 // React Render
 ReactDOM.render(
   <Provider store={store}>
     <MuiThemeProvider theme={theme}>
-      <BrowserRouter history={history}>
+      <BrowserRouter>
         <AppContainer/>
       </BrowserRouter>
     </MuiThemeProvider>

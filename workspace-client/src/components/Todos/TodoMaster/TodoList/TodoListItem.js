@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-// import classNames from 'classnames';
+import classNames from 'classnames';
 import { Link } from 'react-router-dom';
 import { Avatar, ListItem, ListItemText } from '@material-ui/core';
 import CheckCircleOutlineIcon from '@material-ui/icons/Check';
@@ -38,7 +38,7 @@ class TodoListItem extends PureComponent {
     }
 
     return (
-      <ListItem divider button component={Link} to={`/${todo._id}`} className={selected && classes.active}>
+      <ListItem divider button component={Link} to={`/${todo._id}`} className={classNames(selected && classes.active)}>
         {avatar}
         <ListItemText primary={todo.title} secondary={todo.description} />
       </ListItem>
