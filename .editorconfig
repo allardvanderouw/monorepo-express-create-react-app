@@ -1,3 +1,7 @@
+[*]
+end_of_line = lf
+charset = utf-8
+
 # Indentation override for all JS under lib directory
 [**.js]
 indent_style = space
