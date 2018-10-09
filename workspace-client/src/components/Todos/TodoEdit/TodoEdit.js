@@ -1,10 +1,8 @@
-import React, { Fragment, PureComponent } from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { Button, Divider, Grid, ListItem, Paper } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
 import i18n from 'i18next';
-
-import Loading from '../../Shared/Loading';
 
 import TodoForm from '../TodoForm/TodoForm';
 
@@ -61,20 +59,9 @@ class TodoEdit extends PureComponent {
 
     const isDisabled = !meta.isLoaded || meta.isLoading || meta.isSaving;
 
-    let savingContext;
-    if (meta && meta.isSaving) {
-      savingContext = (
-        <Fragment>
-          <Loading message={i18n.t('Todo:saving')} />
-          <Divider />
-        </Fragment>
-      );
-    }
-
     return (
       <div className={classes.rootContainer}>
         <Paper>
-          {savingContext}
           <TodoForm
             disabled={isDisabled}
             title={todo.title}

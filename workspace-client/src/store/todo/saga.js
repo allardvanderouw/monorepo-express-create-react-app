@@ -1,4 +1,5 @@
 import { all, call, fork, put, select, take } from 'redux-saga/effects';
+import { push } from 'react-router-redux';
 import i18n from 'i18next';
 
 import apiTodos from '../../services/apiTodos';
@@ -27,6 +28,7 @@ function* addTodo() {
     try {
       const createdTodo = yield call(apiTodos.createTodo, todo);
       yield put(todosActionCreators.addTodoSuccess(createdTodo));
+      yield put(push(`/${createdTodo._id}`));
     } catch (error) {
       const message = (error && error.message) ? error.message : i18n.t('Todos:unknownError');
       yield put(todosActionCreators.addTodoFailure(message));
@@ -57,6 +59,7 @@ function* removeTodo() {
     try {
       yield call(apiTodos.deleteTodo, todo._id);
       yield put(todosActionCreators.removeTodoSuccess(todo._id));
+      yield put(push('/'));
     } catch (error) {
       const message = (error && error.message) ? error.message : i18n.t('Todos:unknownError');
       yield put(todosActionCreators.removeTodoFailure(todo._id, message));

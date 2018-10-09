@@ -21,7 +21,7 @@ describe('Todos REST API integration test', () => {
   });
 
   describe('POST /api/todos', () => {
-    it('should create an todo', async () => {
+    it('should create a todo', async () => {
       const todo = createTodo();
 
       const response = await request('http://localhost:3000')
@@ -48,7 +48,7 @@ describe('Todos REST API integration test', () => {
       createdTodo = response.body;
     });
 
-    it('should read an todo by _id', async () => {
+    it('should read a todo by _id', async () => {
       const response = await request('http://localhost:3000')
         .get(`/api/todos/${createdTodo._id.toString()}`);
 
@@ -72,7 +72,7 @@ describe('Todos REST API integration test', () => {
       createdTodo = response.body;
     });
 
-    it('should update an todo by _id', async () => {
+    it('should update a todo by _id', async () => {
       const updatedTodo = createTodo({
         ...createdTodo,
         completed: true,
@@ -102,7 +102,7 @@ describe('Todos REST API integration test', () => {
       createdTodo = response.body;
     });
 
-    it('should remove an todo by _id', async () => {
+    it('should remove a todo by _id', async () => {
       const response = await request('http://localhost:3000')
         .delete(`/api/todos/${createdTodo._id}`);
 

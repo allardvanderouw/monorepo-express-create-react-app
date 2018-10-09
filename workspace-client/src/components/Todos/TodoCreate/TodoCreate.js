@@ -1,12 +1,10 @@
-import React, { Fragment, PureComponent } from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { Button, Divider, Grid, ListItem, Paper } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
 import i18n from 'i18next';
 
 import TodoForm from '../TodoForm/TodoForm';
-
-import Loading from '../../Shared/Loading';
 
 const styleSheet = theme => ({
   rootContainer: {
@@ -53,21 +51,13 @@ class TodoCreate extends PureComponent {
   render() {
     const { classes, todo, isAdding } = this.props;
 
-    let addingContext;
-    if (isAdding) {
-      addingContext = (
-        <Fragment>
-          <Loading message={i18n.t('Todo:adding')} />
-          <Divider />
-        </Fragment>
-      );
-    }
+    const isDisabled = isAdding;
 
     return (
       <div className={classes.rootContainer}>
         <Paper>
-          {addingContext}
           <TodoForm
+            disabled={isDisabled}
             title={todo.title}
             description={todo.description}
             notes={todo.notes}
@@ -78,7 +68,7 @@ class TodoCreate extends PureComponent {
           <Divider />
           <ListItem justify='flex-end'>
             <Grid container justify='flex-end'>
-              <Button variant='contained' color='primary' onClick={this.handleAddClick} className={classes.button} disabled={isAdding}>
+              <Button variant='contained' color='primary' onClick={this.handleAddClick} className={classes.button} disabled={isDisabled}>
                 {i18n.t('Todo:add')}
               </Button>
             </Grid>

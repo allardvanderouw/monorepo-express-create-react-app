@@ -1,7 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import { BrowserRouter } from 'react-router-dom';
+import { Router } from 'react-router-dom';
+import { createBrowserHistory } from 'history';
 import { createMuiTheme, MuiThemeProvider } from '@material-ui/core/styles';
 import { blue } from '@material-ui/core/colors';
 import i18n from 'i18next';
@@ -22,16 +23,19 @@ i18n.init({
 // MUI Theme
 const theme = createMuiTheme({ palette: { primary: blue } });
 
+// Create Browser history
+const history = createBrowserHistory();
+
 // Initialize Redux store
-const store = configureStore();
+const store = configureStore(history);
 
 // React Render
 ReactDOM.render(
   <Provider store={store}>
     <MuiThemeProvider theme={theme}>
-      <BrowserRouter>
+      <Router history={history}>
         <AppContainer/>
-      </BrowserRouter>
+      </Router>
     </MuiThemeProvider>
   </Provider>,
   document.getElementById('root'),

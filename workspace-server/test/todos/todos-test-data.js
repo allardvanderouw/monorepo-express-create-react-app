@@ -1,5 +1,7 @@
 const defaultTodo = {
   title: 'Todo',
+  description: '',
+  notes: '',
   completed: false,
 };
 

@@ -3,8 +3,7 @@ const { MongoClient } = require('mongodb');
 let dbConnection;
 let db;
 
-const getConnection = () => dbConnection;
-const get = () => db;
+const getDB = () => db;
 
 const connect = async (mongoDbUri) => {
   // Connect to Mongo DB
@@ -22,8 +21,7 @@ const close = async () => {
 };
 
 module.exports = {
-  getConnection,
-  get,
+  getDB,
   connect,
   close,
 };

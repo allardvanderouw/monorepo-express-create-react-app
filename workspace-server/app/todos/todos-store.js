@@ -1,23 +1,23 @@
 const { ObjectID } = require('mongodb');
 
-const dbAdapter = require('../adapters/mongodb-adapter');
+const { getDB } = require('../adapters/mongodb-adapter');
 
 const collectionName = 'todos';
 
 const createTodo = async (todo) => {
-  const { ops } = await dbAdapter.get().collection(collectionName).insertOne(todo, { w: 1 });
+  const { ops } = await getDB().collection(collectionName).insertOne(todo, { w: 1 });
   return ops[0];
 };
 
 const readTodoById = async (_id) => {
   const query = { _id: new ObjectID(_id) };
-  return dbAdapter.get().collection(collectionName).findOne(query);
+  return getDB().collection(collectionName).findOne(query);
 };
 
 const updateTodoById = async (_id, todo) => {
   const query = { _id: new ObjectID(_id) };
   const { _id: todoId, ...todoWithoutId } = todo;
-  const { value } = await dbAdapter.get().collection(collectionName).findOneAndReplace(query, {
+  const { value } = await getDB().collection(collectionName).findOneAndReplace(query, {
     _id: new ObjectID(_id),
     ...todoWithoutId,
   }, {
@@ -28,11 +28,11 @@ const updateTodoById = async (_id, todo) => {
 
 const deleteTodoById = async (_id) => {
   const query = { _id: new ObjectID(_id) };
-  const { result } = await dbAdapter.get().collection(collectionName).deleteOne(query, { w: 1 });
+  const { result } = await getDB().collection(collectionName).deleteOne(query, { w: 1 });
   return result;
 };
 
-const findTodos = async query => dbAdapter.get().collection(collectionName).find(query).toArray();
+const findTodos = async query => getDB().collection(collectionName).find(query).toArray();
 
 module.exports = {
   createTodo,
