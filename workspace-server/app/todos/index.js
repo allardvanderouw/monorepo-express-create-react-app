@@ -1,4 +1,4 @@
-const api = require('./todos-api');
-const router = require('./todos-router');
+const api = require('./api')
+const router = require('./router')
 
-module.exports = { api, router };
+module.exports = { api, router }

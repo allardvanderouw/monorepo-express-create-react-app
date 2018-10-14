@@ -10,8 +10,8 @@ const todoSchema = {
   required: ['title', 'completed'],
   additionalProperties: false,
 
-};
+}
 
 module.exports = {
   todoSchema,
-};
+}

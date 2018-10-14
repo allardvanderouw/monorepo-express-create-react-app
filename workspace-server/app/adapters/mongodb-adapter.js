@@ -1,27 +1,27 @@
-const { MongoClient } = require('mongodb');
+const { MongoClient } = require('mongodb')
 
-let dbConnection;
-let db;
+let dbConnection
+let db
 
-const getDB = () => db;
+const getDB = () => db
 
 const connect = async (mongoDbUri) => {
   // Connect to Mongo DB
-  dbConnection = await MongoClient.connect(mongoDbUri, { useNewUrlParser: true });
-  db = dbConnection.db();
+  dbConnection = await MongoClient.connect(mongoDbUri, { useNewUrlParser: true })
+  db = dbConnection.db()
 
-  return db;
-};
+  return db
+}
 
 const close = async () => {
   if (dbConnection) {
-    dbConnection.removeAllListeners();
-    await dbConnection.close();
+    dbConnection.removeAllListeners()
+    await dbConnection.close()
   }
-};
+}
 
 module.exports = {
   getDB,
   connect,
   close,
-};
+}

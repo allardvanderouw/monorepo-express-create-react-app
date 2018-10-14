@@ -3,13 +3,13 @@ const defaultTodo = {
   description: '',
   notes: '',
   completed: false,
-};
+}
 
-const createTodo = initialData => ({
+const provideTodo = initialData => ({
   ...defaultTodo,
   ...initialData,
-});
+})
 
 module.exports = {
-  createTodo,
-};
+  provideTodo,
+}

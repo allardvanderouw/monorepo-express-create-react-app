@@ -1,0 +1,9 @@
+{
+	"exclude": [
+		"scripts/*",
+		"server.js",
+		"worker.js",
+		"test/*"
+	],
+	"all": true
+}
