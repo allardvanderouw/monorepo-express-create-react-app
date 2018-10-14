@@ -1,14 +1,14 @@
-import React, { Fragment, PureComponent } from 'react';
-import classNames from 'classnames';
-import PropTypes from 'prop-types';
-import { Drawer, Hidden, List, ListItem, ListItemText, ListItemSecondaryAction, IconButton, Typography } from '@material-ui/core';
-import MenuIcon from '@material-ui/icons/Menu';
-import ListIcon from '@material-ui/icons/List';
-import { withStyles } from '@material-ui/core/styles';
-import { Link } from 'react-router-dom';
-import i18n from 'i18next';
+import React, { Fragment, PureComponent } from 'react'
+import classNames from 'classnames'
+import PropTypes from 'prop-types'
+import { Drawer, Hidden, List, ListItem, ListItemText, ListItemSecondaryAction, IconButton, Typography } from '@material-ui/core'
+import MenuIcon from '@material-ui/icons/Menu'
+import ListIcon from '@material-ui/icons/List'
+import { withStyles } from '@material-ui/core/styles'
+import { Link } from 'react-router-dom'
+import i18n from 'i18next'
 
-const drawerWidth = 250;
+const drawerWidth = 250
 
 const styleSheet = theme => ({
   menuList: {
@@ -20,7 +20,9 @@ const styleSheet = theme => ({
     '@media (min-width:600px)': { height: theme.mixins.toolbar['@media (min-width:600px)'].minHeight },
     height: theme.mixins.toolbar.minHeight,
   },
-  menuIcon: { marginLeft: -12 },
+  menuIcon: {
+    marginLeft: -12,
+  },
   drawerPaper: {
     position: 'relative',
     whiteSpace: 'nowrap',
@@ -39,7 +41,7 @@ const styleSheet = theme => ({
     width: theme.spacing.unit * 7,
     [theme.breakpoints.up('sm')]: { width: theme.spacing.unit * 9 },
   },
-});
+})
 
 class SideMenu extends PureComponent {
   static propTypes = {
@@ -50,7 +52,7 @@ class SideMenu extends PureComponent {
   }
 
   render() {
-    const { classes, isSideMenuOpen, hideSideMenu } = this.props;
+    const { classes, isSideMenuOpen, hideSideMenu } = this.props
 
     const drawerContent = (
       <List component='nav' onClick={hideSideMenu} className={classes.menuList}>
@@ -73,7 +75,7 @@ class SideMenu extends PureComponent {
           <ListItemText primary={i18n.t('Navigation:todos')} />
         </ListItem>
       </List>
-    );
+    )
 
     return (
       <Fragment>
@@ -98,8 +100,8 @@ class SideMenu extends PureComponent {
           </Drawer>
         </Hidden>
       </Fragment>
-    );
+    )
   }
 }
 
-export default withStyles(styleSheet)(SideMenu);
+export default withStyles(styleSheet)(SideMenu)

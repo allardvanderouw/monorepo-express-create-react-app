@@ -1,16 +1,16 @@
-import React, { PureComponent } from 'react';
-import PropTypes from 'prop-types';
-import classNames from 'classnames';
-import { Link } from 'react-router-dom';
-import { Avatar, ListItem, ListItemText } from '@material-ui/core';
-import CheckCircleOutlineIcon from '@material-ui/icons/Check';
-import { green } from '@material-ui/core/colors';
-import { withStyles } from '@material-ui/core/styles';
+import React, { PureComponent } from 'react'
+import PropTypes from 'prop-types'
+import classNames from 'classnames'
+import { Link } from 'react-router-dom'
+import { Avatar, ListItem, ListItemText } from '@material-ui/core'
+import CheckCircleOutlineIcon from '@material-ui/icons/Check'
+import { green } from '@material-ui/core/colors'
+import { withStyles } from '@material-ui/core/styles'
 
 const styleSheet = theme => ({
   active: { backgroundColor: theme.palette.action.selected },
   completed: { backgroundColor: green[500] },
-});
+})
 
 class TodoListItem extends PureComponent {
   static propTypes = {
@@ -20,21 +20,19 @@ class TodoListItem extends PureComponent {
   }
 
   render() {
-    const { classes, todo, selected } = this.props;
+    const { classes, todo, selected } = this.props
 
-    let avatar;
+    let avatar
     if (todo.completed) {
       avatar = (
         <Avatar className={classes.completed}>
           <CheckCircleOutlineIcon />
         </Avatar>
-      );
+      )
     } else {
       avatar = (
-        <Avatar>
-          &nbsp;
-        </Avatar>
-      );
+        <Avatar> </Avatar>
+      )
     }
 
     return (
@@ -42,8 +40,8 @@ class TodoListItem extends PureComponent {
         {avatar}
         <ListItemText primary={todo.title} secondary={todo.description} />
       </ListItem>
-    );
+    )
   }
 }
 
-export default withStyles(styleSheet)(TodoListItem);
+export default withStyles(styleSheet)(TodoListItem)

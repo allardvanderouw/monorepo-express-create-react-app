@@ -1,32 +1,21 @@
-import { createSelector } from 'reselect';
+import { createSelector } from 'reselect'
 
-const todosSelector = state => state.todos;
-const todosMetaSelector = state => state.todosMeta;
-
-const selectedTodoSelector = createSelector(
-  todosSelector,
-  (state, _id) => _id,
-  (todos, selectedTodoId) => {
-    if (!selectedTodoId) {
-      return null;
+export const filteredTodosSelector = createSelector(
+  todos => todos,
+  (todos, query) => query,
+  (todos, query) => {
+    if (!query) {
+      return todos
     }
-    return todos.find(({ _id }) => _id === selectedTodoId);
-  },
-);
 
-const selectedTodoMetaSelector = createSelector(
-  todosMetaSelector,
-  (state, _id) => _id,
-  (todosMeta, selectedTodoId) => {
-    if (!selectedTodoId) {
-      return null;
-    }
-    return todosMeta.find(({ _id }) => _id === selectedTodoId);
+    return todos.filter((todo) => {
+      if (todo.title.includes(query)) {
+        return true
+      }
+      if (todo.description.includes(query)) {
+        return true
+      }
+      return false
+    })
   },
-);
-
-// Make sure to only export selectors which are created with 'createSelector'
-export default {
-  selectedTodoSelector,
-  selectedTodoMetaSelector,
-};
+)

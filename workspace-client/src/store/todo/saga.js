@@ -1,77 +1,101 @@
-import { all, call, fork, put, select, take } from 'redux-saga/effects';
-import { push } from 'react-router-redux';
-import i18n from 'i18next';
+import { all, call, fork, put, select, take } from 'redux-saga/effects'
+import { push } from 'connected-react-router'
+import i18n from 'i18next'
 
-import apiTodos from '../../services/apiTodos';
-import actionTypes from './actionTypes';
-import todosActionCreators from './actionCreators';
+import * as apiTodos from '../../services/apiTodos'
+import * as actionTypes from './actionTypes'
+import * as actionCreators from './actionCreators'
+import { add as addNotification } from '../notifications/actionCreators'
 
-function* fetchTodo() {
+function* routeTo() {
   while (true) {
-    const fetchAction = yield take(actionTypes.FETCH_TODO);
-    yield put(todosActionCreators.fetchTodoRequest(fetchAction.meta._id));
-    try {
-      const todo = yield call(apiTodos.getTodo, fetchAction.meta._id);
-      yield put(todosActionCreators.fetchTodoSuccess(todo));
-    } catch (error) {
-      const message = (error && error.message) ? error.message : i18n.t('Todos:unknownError');
-      yield put(todosActionCreators.fetchTodoFailure(fetchAction.meta._id, message));
+    const action = yield take(actionTypes.ROUTE_TO)
+    const selectedId = yield select(state => state.todoState.selectedId)
+
+    if (action.meta._id === 'new') {
+      yield put(actionCreators.create())
+    } else if (selectedId !== action.meta._id) {
+      // Another todo is selected
+      yield put(actionCreators.select(action.meta._id))
     }
   }
 }
 
-function* addTodo() {
+function* fetch() {
   while (true) {
-    yield take(actionTypes.ADD_TODO);
-    const todo = yield select(state => state.todoState.todo);
-    yield put(todosActionCreators.addTodoRequest());
+    const fetchAction = yield take(actionTypes.SELECT)
+    yield put(actionCreators.fetchRequest(fetchAction.meta._id))
     try {
-      const createdTodo = yield call(apiTodos.createTodo, todo);
-      yield put(todosActionCreators.addTodoSuccess(createdTodo));
-      yield put(push(`/${createdTodo._id}`));
+      const todo = yield call(apiTodos.read, fetchAction.meta._id)
+      yield put(actionCreators.fetchSuccess(todo))
     } catch (error) {
-      const message = (error && error.message) ? error.message : i18n.t('Todos:unknownError');
-      yield put(todosActionCreators.addTodoFailure(message));
+      const message = (error && error.message) ? error.message : i18n.t('Todos:unknownError')
+      yield put(actionCreators.fetchFailure(fetchAction.meta._id, message))
+      yield put(push('/'))
+      yield put(addNotification({ message }))
     }
   }
 }
 
-function* saveTodo() {
+function* add() {
   while (true) {
-    yield take(actionTypes.SAVE_TODO);
-    const todo = yield select(state => state.todoState.todo);
-    yield put(todosActionCreators.saveTodoRequest());
+    yield take(actionTypes.ADD)
+    const todo = yield select(state => state.todoState.todo)
+    yield put(actionCreators.addRequest())
     try {
-      const savedTodo = yield call(apiTodos.updateTodo, todo);
-      yield put(todosActionCreators.saveTodoSuccess(savedTodo));
+      const created = yield call(apiTodos.add, todo)
+      yield put(actionCreators.addSuccess(created))
+      yield put(push(`/${created._id}`))
+      yield put(addNotification({ message: i18n.t('Todo:added') }))
     } catch (error) {
-      const message = (error && error.message) ? error.message : i18n.t('Todos:unknownError');
-      yield put(todosActionCreators.saveTodoFailure(todo._id, message));
+      const message = (error && error.message) ? error.message : i18n.t('Todos:unknownError')
+      yield put(actionCreators.addFailure(message))
+      yield put(addNotification({ message }))
     }
   }
 }
 
-function* removeTodo() {
+function* save() {
   while (true) {
-    yield take(actionTypes.REMOVE_TODO);
-    const todo = yield select(state => state.todoState.todo);
-    yield put(todosActionCreators.removeTodoRequest(todo._id));
+    yield take(actionTypes.SAVE)
+    const todo = yield select(state => state.todoState.todo)
+    yield put(actionCreators.saveRequest())
     try {
-      yield call(apiTodos.deleteTodo, todo._id);
-      yield put(todosActionCreators.removeTodoSuccess(todo._id));
-      yield put(push('/'));
+      const saved = yield call(apiTodos.modify, todo)
+      yield put(actionCreators.saveSuccess(saved))
+      yield put(addNotification({ message: i18n.t('Todo:saved') }))
     } catch (error) {
-      const message = (error && error.message) ? error.message : i18n.t('Todos:unknownError');
-      yield put(todosActionCreators.removeTodoFailure(todo._id, message));
+      const message = (error && error.message) ? error.message : i18n.t('Todos:unknownError')
+      yield put(actionCreators.saveFailure(todo._id, message))
+      yield put(addNotification({ message }))
+    }
+  }
+}
+
+function* remove() {
+  while (true) {
+    yield take(actionTypes.REMOVE)
+    const todo = yield select(state => state.todoState.todo)
+    yield put(actionCreators.removeRequest(todo._id))
+    try {
+      yield call(apiTodos.remove, todo._id)
+      yield put(actionCreators.removeSuccess(todo._id))
+      yield put(push('/'))
+      yield put(addNotification({ message: i18n.t('Todo:removed') }))
+    } catch (error) {
+      const message = (error && error.message) ? error.message : i18n.t('Todos:unknownError')
+      yield put(actionCreators.removeFailure(todo._id, message))
+      yield put(addNotification({ message }))
     }
   }
 }
 
 export default function* rootSaga() {
   yield all([
-    fetchTodo,
-    addTodo,
-    saveTodo,
-    removeTodo,
-  ].map(saga => fork(saga)));
+    routeTo,
+    fetch,
+    add,
+    save,
+    remove,
+  ].map(saga => fork(saga)))
 }

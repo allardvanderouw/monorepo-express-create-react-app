@@ -1,17 +1,29 @@
-import actionTypes from './actionTypes';
+import * as actionTypes from './actionTypes'
 
-export default {
-  fetchTodos: () => ({ type: actionTypes.FETCH_TODOS }),
+export const routeTo = isExact => ({
+  type: actionTypes.ROUTE_TO,
+  meta: {
+    isExact,
+  },
+})
 
-  fetchTodosFailure: message => ({
-    type: actionTypes.FETCH_TODOS_FAILURE,
-    payload: { message },
-  }),
+export const refresh = () => ({ type: actionTypes.REFRESH })
 
-  fetchTodosRequest: () => ({ type: actionTypes.FETCH_TODOS_REQUEST }),
+export const fetch = () => ({ type: actionTypes.FETCH })
 
-  fetchTodosSuccess: todos => ({
-    type: actionTypes.FETCH_TODOS_SUCCESS,
-    payload: { todos },
-  }),
-};
+export const fetchFailure = message => ({
+  type: actionTypes.FETCH_FAILURE,
+  payload: { message },
+})
+
+export const fetchRequest = () => ({ type: actionTypes.FETCH_REQUEST })
+
+export const fetchSuccess = todos => ({
+  type: actionTypes.FETCH_SUCCESS,
+  payload: { todos },
+})
+
+export const search = query => ({
+  type: actionTypes.SEARCH,
+  query,
+})

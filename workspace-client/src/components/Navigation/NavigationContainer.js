@@ -1,20 +1,20 @@
-import React, { Fragment, PureComponent } from 'react';
-import TopBar from './TopBar';
-import SideMenu from './SideMenu';
+import React, { Fragment, PureComponent } from 'react'
+import TopBar from './TopBar'
+import SideMenu from './SideMenu'
 
 class NavigationContainer extends PureComponent {
   state = { isSideMenuOpen: false }
 
   handleShowSideMenu = () => {
-    this.setState({ isSideMenuOpen: true });
+    this.setState({ isSideMenuOpen: true })
   }
 
   handleHideSideMenu = () => {
-    this.setState({ isSideMenuOpen: false });
+    this.setState({ isSideMenuOpen: false })
   }
 
   render() {
-    const { isSideMenuOpen } = this.state;
+    const { isSideMenuOpen } = this.state
 
     return (
       <Fragment>
@@ -28,8 +28,8 @@ class NavigationContainer extends PureComponent {
           showSideMenu={this.handleShowSideMenu}
         />
       </Fragment>
-    );
+    )
   }
 }
 
-export default NavigationContainer;
+export default NavigationContainer

@@ -1,7 +1,7 @@
-import React, { PureComponent } from 'react';
-import PropTypes from 'prop-types';
-import { List, ListItem, TextField } from '@material-ui/core';
-import i18n from 'i18next';
+import React, { PureComponent } from 'react'
+import PropTypes from 'prop-types'
+import { List, ListItem, TextField } from '@material-ui/core'
+import i18n from 'i18next'
 
 class TodoForm extends PureComponent {
   static propTypes = {
@@ -21,7 +21,7 @@ class TodoForm extends PureComponent {
       changeTitle,
       changeDescription,
       changeNotes,
-    } = this.props;
+    } = this.props
 
     return (
       <List disablePadding>
@@ -47,8 +47,8 @@ class TodoForm extends PureComponent {
           />
         </ListItem>
       </List>
-    );
+    )
   }
 }
 
-export default TodoForm;
+export default TodoForm

@@ -1,6 +1,7 @@
-export default {
-  FETCH_TODOS: 'todos/FETCH_TODOS',
-  FETCH_TODOS_REQUEST: 'todos/FETCH_TODOS_REQUEST',
-  FETCH_TODOS_FAILURE: 'todos/FETCH_TODOS_FAILURE',
-  FETCH_TODOS_SUCCESS: 'todos/FETCH_TODOS_SUCCESS',
-};
+export const FETCH = 'todos/FETCH'
+export const FETCH_FAILURE = 'todos/FETCH_FAILURE'
+export const FETCH_REQUEST = 'todos/FETCH_REQUEST'
+export const FETCH_SUCCESS = 'todos/FETCH_SUCCESS'
+export const REFRESH = 'todos/REFRESH'
+export const ROUTE_TO = 'todos/ROUTE_TO'
+export const SEARCH = 'todos/SEARCH'

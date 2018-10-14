@@ -1,43 +1,42 @@
-import React, { PureComponent } from 'react';
-import PropTypes from 'prop-types';
-import { Grid, Hidden } from '@material-ui/core';
-import { withStyles } from '@material-ui/core/styles';
+import React, { PureComponent } from 'react'
+import PropTypes from 'prop-types'
+import { Grid, Hidden } from '@material-ui/core'
+import { withStyles } from '@material-ui/core/styles'
 
-import TodoMasterContainer from './TodoMaster/TodoMasterContainer';
-import TodoCreateContainer from './TodoCreate/TodoCreateContainer';
-import TodoEditContainer from './TodoEdit/TodoEditContainer';
+import TodoMasterContainer from './TodoMaster/TodoMasterContainer'
+import TodoCreateContainer from './TodoCreate/TodoCreateContainer'
+import TodoEditContainer from './TodoEdit/TodoEditContainer'
 
-const styleSheet = { container: { height: '100%' } };
+const styleSheet = {
+  container: { height: '100%' },
+}
 
 class Todos extends PureComponent {
   static propTypes = {
     classes: PropTypes.object.isRequired,
-    selectedTodoId: PropTypes.string,
+    selectedId: PropTypes.string,
     isNew: PropTypes.bool.isRequired,
   }
 
   render() {
-    const { classes, selectedTodoId, isNew } = this.props;
+    const { classes, selectedId, isNew } = this.props
 
-    let detailContext;
+    let detailContext
     if (isNew) {
       detailContext = (
         <TodoCreateContainer />
-      );
-    } else if (selectedTodoId) {
+      )
+    } else if (selectedId) {
       detailContext = (
-        <TodoEditContainer
-          key={selectedTodoId}
-          selectedTodoId={selectedTodoId}
-        />
-      );
+        <TodoEditContainer />
+      )
     }
 
     return (
       <Grid container className={classes.container}>
         <Hidden smDown={!!detailContext}>
           <Grid item md={4} xs={12}>
-            <TodoMasterContainer selectedTodoId={selectedTodoId} />
+            <TodoMasterContainer />
           </Grid>
         </Hidden>
         <Hidden smDown={!detailContext}>
@@ -46,8 +45,8 @@ class Todos extends PureComponent {
           </Grid>
         </Hidden>
       </Grid>
-    );
+    )
   }
 }
 
-export default withStyles(styleSheet)(Todos);
+export default withStyles(styleSheet)(Todos)

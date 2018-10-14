@@ -1,12 +1,14 @@
-import { all, fork } from 'redux-saga/effects';
-import todosSaga from './todos/saga';
-import todoSaga from './todo/saga';
+import { all, fork } from 'redux-saga/effects'
+import routingSaga from './routing/saga'
+import todosSaga from './todos/saga'
+import todoSaga from './todo/saga'
 
 function* rootSaga() {
   yield all([
+    routingSaga,
     todosSaga,
     todoSaga,
-  ].map(saga => fork(saga)));
+  ].map(saga => fork(saga)))
 }
 
-export default rootSaga;
+export default rootSaga

@@ -1,22 +1,36 @@
 {
 	"Api": {
-		"networkError": "Network error occurred",
-		"serverError": "Server error occurred"
+		"networkError": "Geen verbinding",
+		"serverError": "Er is een fout opgetreden op de server, probeer later opnieuw"
 	},
 	"Main": {
-		"title": "Todos"
+		"title": "Taken"
 	},
 	"Navigation": {
-		"todos": "Todos"
+		"todos": "Taken"
 	},
 	"Todos": {
 		"Filter": {
-			"search": "Search..."
+			"search": "Zoeken..."
 		},
-		"empty": "No todos found",
+		"addNewTodo": "Taak toevoegen",
+		"empty": "Geen taken gevonden",
 		"loading": "Todos are loading...",
-		"notFoundDescription": "Todo not found",
-		"notFoundHeader": "Not found",
-		"unknownError": "Unknown error occurred"
+		"notFoundDescription": "Taak niet gevonden",
+		"notFoundHeader": "Niet gevonden",
+		"refreshed": "De takenlijst is opnieuw opgehaald",
+		"unknownError": "Onbekende fout opgetreden"
+	},
+	"Todo": {
+		"add": "Toevoegen",
+		"added": "De taak is toegevoegd",
+		"completed": "Voltooid",
+		"description": "Omschrijving",
+		"save": "Opslaan",
+		"notes": "Notities",
+		"remove": "Verwijderen",
+		"removed": "De taak is verwijderd",
+		"saved": "De taak is gewijzigd",
+		"title": "Taak"
 	}
 }

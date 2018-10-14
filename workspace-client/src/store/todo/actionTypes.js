@@ -1,25 +1,20 @@
-export default {
-  DESELECT_TODO: 'todo/DESELECT_TODO',
-
-  FETCH_TODO: 'todo/FETCH_TODO',
-  FETCH_TODO_REQUEST: 'todo/FETCH_TODO_REQUEST',
-  FETCH_TODO_FAILURE: 'todo/FETCH_TODO_FAILURE',
-  FETCH_TODO_SUCCESS: 'todo/FETCH_TODO_SUCCESS',
-
-  ADD_TODO: 'todo/ADD_TODO',
-  ADD_TODO_REQUEST: 'todo/ADD_TODO_REQUEST',
-  ADD_TODO_FAILURE: 'todo/ADD_TODO_FAILURE',
-  ADD_TODO_SUCCESS: 'todo/ADD_TODO_SUCCESS',
-
-  SAVE_TODO: 'todo/SAVE_TODO',
-  SAVE_TODO_REQUEST: 'todo/SAVE_TODO_REQUEST',
-  SAVE_TODO_FAILURE: 'todo/SAVE_TODO_FAILURE',
-  SAVE_TODO_SUCCESS: 'todo/SAVE_TODO_SUCCESS',
-
-  REMOVE_TODO: 'todo/REMOVE_TODO',
-  REMOVE_TODO_REQUEST: 'todo/REMOVE_TODO_REQUEST',
-  REMOVE_TODO_FAILURE: 'todo/REMOVE_TODO_FAILURE',
-  REMOVE_TODO_SUCCESS: 'todo/REMOVE_TODO_SUCCESS',
-
-  MODIFY_TODO: 'todo/MODIFY_TODO',
-};
+export const ADD = 'todo/ADD'
+export const ADD_FAILURE = 'todo/ADD_FAILURE'
+export const ADD_REQUEST = 'todo/ADD_REQUEST'
+export const ADD_SUCCESS = 'todo/ADD_SUCCESS'
+export const CREATE = 'todo/CREATE'
+export const DESELECT = 'todo/DESELECT'
+export const FETCH_FAILURE = 'todo/FETCH_FAILURE'
+export const FETCH_REQUEST = 'todo/FETCH_REQUEST'
+export const FETCH_SUCCESS = 'todo/FETCH_SUCCESS'
+export const MODIFY = 'todo/MODIFY'
+export const REMOVE = 'todo/REMOVE'
+export const REMOVE_FAILURE = 'todo/REMOVE_FAILURE'
+export const REMOVE_REQUEST = 'todo/REMOVE_REQUEST'
+export const REMOVE_SUCCESS = 'todo/REMOVE_SUCCESS'
+export const ROUTE_TO = 'todo/ROUTE_TO'
+export const SAVE = 'todo/SAVE'
+export const SAVE_FAILURE = 'todo/SAVE_FAILURE'
+export const SAVE_REQUEST = 'todo/SAVE_REQUEST'
+export const SAVE_SUCCESS = 'todo/SAVE_SUCCESS'
+export const SELECT = 'todo/SELECT'

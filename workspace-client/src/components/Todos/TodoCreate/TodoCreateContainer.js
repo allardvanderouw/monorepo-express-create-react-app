@@ -1,35 +1,28 @@
-import React, { PureComponent } from 'react';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
+import React, { PureComponent } from 'react'
+import PropTypes from 'prop-types'
+import { connect } from 'react-redux'
 
-import todoActionCreators from '../../../store/todo/actionCreators';
-import TodoCreate from './TodoCreate';
+import { deselect, add, modify } from '../../../store/todo/actionCreators'
+import TodoCreate from './TodoCreate'
 
 class TodoCreateContainer extends PureComponent {
   static propTypes ={
     todo: PropTypes.object.isRequired,
     isAdding: PropTypes.bool.isRequired,
-    deselectTodo: PropTypes.func.isRequired,
-    addTodo: PropTypes.func.isRequired,
-    modifyTodo: PropTypes.func.isRequired,
-  }
-
-  componentWillUnmount() {
-    const { deselectTodo } = this.props;
-    deselectTodo();
+    deselect: PropTypes.func.isRequired,
+    add: PropTypes.func.isRequired,
+    modify: PropTypes.func.isRequired,
   }
 
   render() {
-    const { todo, isAdding, addTodo, modifyTodo } = this.props;
-
     return (
       <TodoCreate
-        todo={todo}
-        isAdding={isAdding}
-        add={addTodo}
-        modify={modifyTodo}
+        todo={this.props.todo}
+        isAdding={this.props.isAdding}
+        add={this.props.add}
+        modify={this.props.modify}
       />
-    );
+    )
   }
 }
 
@@ -39,10 +32,10 @@ const connector = connect(
     isAdding: state.todoState.meta.isAdding,
   }),
   {
-    deselectTodo: todoActionCreators.deselectTodo,
-    addTodo: todoActionCreators.addTodo,
-    modifyTodo: todoActionCreators.modifyTodo,
+    deselect,
+    add,
+    modify,
   },
-);
+)
 
-export default connector(TodoCreateContainer);
+export default connector(TodoCreateContainer)

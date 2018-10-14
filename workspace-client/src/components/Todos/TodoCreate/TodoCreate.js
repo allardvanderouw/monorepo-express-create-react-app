@@ -1,10 +1,10 @@
-import React, { PureComponent } from 'react';
-import PropTypes from 'prop-types';
-import { Button, Divider, Grid, ListItem, Paper } from '@material-ui/core';
-import { withStyles } from '@material-ui/core/styles';
-import i18n from 'i18next';
+import React, { PureComponent } from 'react'
+import PropTypes from 'prop-types'
+import { Button, Divider, Grid, ListItem, Paper } from '@material-ui/core'
+import { withStyles } from '@material-ui/core/styles'
+import i18n from 'i18next'
 
-import TodoForm from '../TodoForm/TodoForm';
+import TodoForm from '../TodoForm/TodoForm'
 
 const styleSheet = theme => ({
   rootContainer: {
@@ -17,7 +17,7 @@ const styleSheet = theme => ({
   button: {
     margin: theme.spacing.unit,
   },
-});
+})
 
 class TodoCreate extends PureComponent {
   static propTypes = {
@@ -29,29 +29,29 @@ class TodoCreate extends PureComponent {
   }
 
   handleTitleChange = (event) => {
-    const { modify } = this.props;
-    modify({ title: event.target.value });
+    const { modify } = this.props
+    modify({ title: event.target.value })
   }
 
   handleDescriptionChange = (event) => {
-    const { modify } = this.props;
-    modify({ description: event.target.value });
+    const { modify } = this.props
+    modify({ description: event.target.value })
   }
 
   handleNotesChange = (event) => {
-    const { modify } = this.props;
-    modify({ notes: event.target.value });
+    const { modify } = this.props
+    modify({ notes: event.target.value })
   }
 
   handleAddClick = () => {
-    const { add } = this.props;
-    add();
+    const { add } = this.props
+    add()
   }
 
   render() {
-    const { classes, todo, isAdding } = this.props;
+    const { classes, todo, isAdding } = this.props
 
-    const isDisabled = isAdding;
+    const isDisabled = isAdding
 
     return (
       <div className={classes.rootContainer}>
@@ -75,8 +75,8 @@ class TodoCreate extends PureComponent {
           </ListItem>
         </Paper>
       </div>
-    );
+    )
   }
 }
 
-export default withStyles(styleSheet)(TodoCreate);
+export default withStyles(styleSheet)(TodoCreate)

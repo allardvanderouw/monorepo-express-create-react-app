@@ -1,95 +1,104 @@
-import actionTypes from './actionTypes';
+import * as actionTypes from './actionTypes'
 
-export default {
-  deselectTodo: () => ({
-    type: actionTypes.DESELECT_TODO,
-  }),
+export const routeTo = _id => ({
+  type: actionTypes.ROUTE_TO,
+  meta: {
+    _id,
+  },
+})
 
-  fetchTodo: _id => ({
-    type: actionTypes.FETCH_TODO,
-    meta: { _id },
-  }),
+export const create = () => ({
+  type: actionTypes.CREATE,
+})
 
-  fetchTodoFailure: (_id, message) => ({
-    type: actionTypes.FETCH_TODO_FAILURE,
-    meta: { _id },
-    payload: { message },
-    error: true,
-  }),
+export const select = _id => ({
+  type: actionTypes.SELECT,
+  meta: { _id },
+})
 
-  fetchTodoRequest: _id => ({
-    type: actionTypes.FETCH_TODO_REQUEST,
-    meta: { _id },
-  }),
+export const deselect = () => ({
+  type: actionTypes.DESELECT,
+})
 
-  fetchTodoSuccess: todo => ({
-    type: actionTypes.FETCH_TODO_SUCCESS,
-    payload: { todo },
-  }),
+export const fetchFailure = (_id, message) => ({
+  type: actionTypes.FETCH_FAILURE,
+  meta: { _id },
+  payload: { message },
+  error: true,
+})
 
-  addTodo: () => ({
-    type: actionTypes.ADD_TODO,
-  }),
+export const fetchRequest = _id => ({
+  type: actionTypes.FETCH_REQUEST,
+  meta: { _id },
+})
 
-  addTodoFailure: message => ({
-    type: actionTypes.ADD_TODO_FAILURE,
-    payload: { message },
-    error: true,
-  }),
+export const fetchSuccess = todo => ({
+  type: actionTypes.FETCH_SUCCESS,
+  payload: { todo },
+})
 
-  addTodoRequest: () => ({
-    type: actionTypes.ADD_TODO_REQUEST,
-  }),
+export const add = () => ({
+  type: actionTypes.ADD,
+})
 
-  addTodoSuccess: todo => ({
-    type: actionTypes.ADD_TODO_SUCCESS,
-    payload: { todo },
-  }),
+export const addFailure = message => ({
+  type: actionTypes.ADD_FAILURE,
+  payload: { message },
+  error: true,
+})
 
-  saveTodo: () => ({
-    type: actionTypes.SAVE_TODO,
-  }),
+export const addRequest = () => ({
+  type: actionTypes.ADD_REQUEST,
+})
 
-  saveTodoFailure: (_id, message) => ({
-    type: actionTypes.SAVE_TODO_FAILURE,
-    meta: { _id },
-    payload: { message },
-    error: true,
-  }),
+export const addSuccess = todo => ({
+  type: actionTypes.ADD_SUCCESS,
+  payload: { todo },
+})
 
-  saveTodoRequest: _id => ({
-    type: actionTypes.SAVE_TODO_REQUEST,
-    meta: { _id },
-  }),
+export const save = () => ({
+  type: actionTypes.SAVE,
+})
 
-  saveTodoSuccess: todo => ({
-    type: actionTypes.SAVE_TODO_SUCCESS,
-    payload: { todo },
-  }),
+export const saveFailure = (_id, message) => ({
+  type: actionTypes.SAVE_FAILURE,
+  meta: { _id },
+  payload: { message },
+  error: true,
+})
 
-  removeTodo: () => ({
-    type: actionTypes.REMOVE_TODO,
-  }),
+export const saveRequest = _id => ({
+  type: actionTypes.SAVE_REQUEST,
+  meta: { _id },
+})
 
-  removeTodoFailure: (_id, message) => ({
-    type: actionTypes.REMOVE_TODO_FAILURE,
-    meta: { _id },
-    payload: { message },
-    error: true,
-  }),
+export const saveSuccess = todo => ({
+  type: actionTypes.SAVE_SUCCESS,
+  payload: { todo },
+})
 
-  removeTodoRequest: _id => ({
-    type: actionTypes.REMOVE_TODO_REQUEST,
-    meta: { _id },
-  }),
+export const remove = () => ({
+  type: actionTypes.REMOVE,
+})
 
-  removeTodoSuccess: _id => ({
-    type: actionTypes.REMOVE_TODO_SUCCESS,
-    meta: { _id },
-  }),
+export const removeFailure = (_id, message) => ({
+  type: actionTypes.REMOVE_FAILURE,
+  meta: { _id },
+  payload: { message },
+  error: true,
+})
 
-  modifyTodo: todo => ({
-    type: actionTypes.MODIFY_TODO,
-    todo,
-  }),
-};
+export const removeRequest = _id => ({
+  type: actionTypes.REMOVE_REQUEST,
+  meta: { _id },
+})
+
+export const removeSuccess = _id => ({
+  type: actionTypes.REMOVE_SUCCESS,
+  meta: { _id },
+})
+
+export const modify = todo => ({
+  type: actionTypes.MODIFY,
+  todo,
+})

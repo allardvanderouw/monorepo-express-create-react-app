@@ -1,9 +1,9 @@
-import React, { PureComponent } from 'react';
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
-import { IconButton, List, ListItem, TextField } from '@material-ui/core';
-import RefreshIcon from '@material-ui/icons/Refresh';
-import i18n from 'i18next';
+import React, { PureComponent } from 'react'
+import PropTypes from 'prop-types'
+import { withStyles } from '@material-ui/core/styles'
+import { IconButton, List, ListItem, TextField } from '@material-ui/core'
+import RefreshIcon from '@material-ui/icons/Refresh'
+import i18n from 'i18next'
 
 const styleSheet = theme => ({
   filter: {
@@ -12,33 +12,23 @@ const styleSheet = theme => ({
     display: 'flex',
   },
   input: { flex: 1 },
-});
+})
 
 class TodoFilter extends PureComponent {
   static propTypes = {
     classes: PropTypes.object.isRequired,
     isLoading: PropTypes.bool.isRequired,
-    fetchTodos: PropTypes.func.isRequired,
+    query: PropTypes.string.isRequired,
+    refresh: PropTypes.func.isRequired,
+    search: PropTypes.func.isRequired,
+  }
+
+  handleQueryChange = (event) => {
+    this.props.search(event.target.value)
   }
 
   render() {
-    const { classes, isLoading, fetchTodos } = this.props;
-
-    let refreshButton;
-    // keys added to IconButton to trigger correct react rendering
-    if (isLoading) {
-      refreshButton = (
-        <IconButton key='spinning' className={classes.refreshIcon} disabled={true}>
-          <RefreshIcon />
-        </IconButton>
-      );
-    } else {
-      refreshButton = (
-        <IconButton key='static' className={classes.refreshIcon} onClick={fetchTodos}>
-          <RefreshIcon />
-        </IconButton>
-      );
-    }
+    const { classes, isLoading, query, refresh } = this.props
 
     return (
       <List className={classes.filter}>
@@ -46,14 +36,16 @@ class TodoFilter extends PureComponent {
           <TextField
             label={i18n.t('Todos:Filter:search')}
             className={classes.input}
-            value={''}
-            onChange={this.handleChangeName}
+            value={query}
+            onChange={this.handleQueryChange}
           />
-          {refreshButton}
+          <IconButton className={classes.refreshIcon} onClick={refresh} disabled={isLoading}>
+            <RefreshIcon />
+          </IconButton>
         </ListItem>
       </List>
-    );
+    )
   }
 }
 
-export default withStyles(styleSheet)(TodoFilter);
+export default withStyles(styleSheet)(TodoFilter)

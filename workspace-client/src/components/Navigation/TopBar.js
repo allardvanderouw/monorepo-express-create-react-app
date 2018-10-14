@@ -1,15 +1,17 @@
-import React, { PureComponent } from 'react';
-import classNames from 'classnames';
-import PropTypes from 'prop-types';
-import { AppBar, IconButton, Toolbar, Typography } from '@material-ui/core';
-import MenuIcon from '@material-ui/icons/Menu';
-import { withStyles } from '@material-ui/core/styles';
-import i18n from 'i18next';
+import React, { PureComponent } from 'react'
+import classNames from 'classnames'
+import PropTypes from 'prop-types'
+import { AppBar, IconButton, Toolbar, Typography } from '@material-ui/core'
+import MenuIcon from '@material-ui/icons/Menu'
+import { withStyles } from '@material-ui/core/styles'
+import i18n from 'i18next'
 
-const drawerWidth = 250;
+const drawerWidth = 250
 
 const styleSheet = theme => ({
-  flex: { flexGrow: 1 },
+  flex: {
+    flexGrow: 1,
+  },
   menuButton: {
     marginLeft: -12,
     marginRight: 20,
@@ -29,8 +31,10 @@ const styleSheet = theme => ({
       duration: theme.transitions.duration.enteringScreen,
     }),
   },
-  hide: { display: 'none' },
-});
+  hide: {
+    display: 'none',
+  },
+})
 
 class TopBar extends PureComponent {
   static propTypes = {
@@ -44,7 +48,7 @@ class TopBar extends PureComponent {
       classes,
       isSideMenuOpen,
       showSideMenu,
-    } = this.props;
+    } = this.props
 
     return (
       <AppBar
@@ -59,8 +63,8 @@ class TopBar extends PureComponent {
           </Typography>
         </Toolbar>
       </AppBar>
-    );
+    )
   }
 }
 
-export default withStyles(styleSheet)(TopBar);
+export default withStyles(styleSheet)(TopBar)

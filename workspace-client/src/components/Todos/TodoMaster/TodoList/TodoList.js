@@ -1,13 +1,13 @@
-import React, { PureComponent } from 'react';
-import { Link } from 'react-router-dom';
-import PropTypes from 'prop-types';
-import { Avatar, List, ListItem, ListItemAvatar, ListItemText } from '@material-ui/core';
-import { withStyles } from '@material-ui/core/styles';
-import AddIcon from '@material-ui/icons/Add';
-import i18n from 'i18next';
+import React, { PureComponent } from 'react'
+import { Link } from 'react-router-dom'
+import PropTypes from 'prop-types'
+import { Avatar, List, ListItem, ListItemAvatar, ListItemText, Typography } from '@material-ui/core'
+import { withStyles } from '@material-ui/core/styles'
+import AddIcon from '@material-ui/icons/Add'
+import i18n from 'i18next'
 
-import TodoListItem from './TodoListItem';
-import Loading from '../../../Shared/Loading';
+import TodoListItem from './TodoListItem'
+import Loading from '../../../Shared/Loading'
 
 const styleSheet = theme => ({
   content: {
@@ -15,8 +15,13 @@ const styleSheet = theme => ({
     backgroundColor: theme.palette.background.paper,
     borderRight: `1px solid ${theme.palette.divider}`,
   },
-  addNewTodo: { backgroundColor: theme.palette.secondary.main },
-});
+  addNewTodoIcon: {
+    backgroundColor: theme.palette.primary.main,
+  },
+  addNewTodoText: {
+    color: theme.palette.primary.main,
+  },
+})
 
 class TodoList extends PureComponent {
   static propTypes = {
@@ -32,23 +37,23 @@ class TodoList extends PureComponent {
       todos,
       selectedTodoId,
       isLoading,
-    } = this.props;
+    } = this.props
 
     if (isLoading) {
       return (
         <List className={classes.content}>
           <Loading message={i18n.t('Todos:loading')} />
         </List>
-      );
+      )
     }
 
-    let content;
+    let content
     if (todos.length === 0) {
       content = [(
-        <ListItem key='EmptyTodos'>
+        <ListItem divider key='EmptyTodos'>
           <ListItemText primary={i18n.t('Todos:empty')} />
         </ListItem>
-      )];
+      )]
     } else {
       content = todos.map(todo => (
         <TodoListItem
@@ -56,28 +61,34 @@ class TodoList extends PureComponent {
           todo={todo}
           selected={todo._id === selectedTodoId}
         />
-      ));
+      ))
     }
 
     const addNewTodo = (
       <ListItem key='AddNewTodo' button component={Link} to={'/new'}>
         <ListItemAvatar>
-          <Avatar className={classes.addNewTodo}>
+          <Avatar className={classes.addNewTodoIcon}>
             <AddIcon />
           </Avatar>
         </ListItemAvatar>
-        <ListItemText primary={i18n.t('Todos:addNewTodo')} />
+        <ListItemText
+          primary={(
+            <Typography variant="subheading" className={classes.addNewTodoText}>
+              {i18n.t('Todos:addNewTodo')}
+            </Typography>
+          )}
+        />
       </ListItem>
-    );
+    )
 
-    content = content.concat(addNewTodo);
+    content = content.concat(addNewTodo)
 
     return (
       <List disablePadding className={classes.content}>
         {content}
       </List>
-    );
+    )
   }
 }
 
-export default withStyles(styleSheet)(TodoList);
+export default withStyles(styleSheet)(TodoList)

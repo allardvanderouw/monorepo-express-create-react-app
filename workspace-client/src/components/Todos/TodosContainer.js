@@ -1,42 +1,30 @@
-import React, { PureComponent } from 'react';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
+import React, { PureComponent } from 'react'
+import PropTypes from 'prop-types'
+import { connect } from 'react-redux'
 
-import Todos from './Todos';
-import actionCreators from '../../store/todos/actionCreators';
+import Todos from './Todos'
 
 class TodosContainer extends PureComponent {
   static propTypes = {
-    selectedTodoId: PropTypes.string,
+    selectedId: PropTypes.string,
     isNew: PropTypes.bool,
-    fetchTodos: PropTypes.func.isRequired,
-  }
-
-  componentDidMount() {
-    const { fetchTodos } = this.props;
-    fetchTodos();
   }
 
   render() {
-    const { selectedTodoId, isNew } = this.props;
-
     return (
       <Todos
-        selectedTodoId={selectedTodoId}
-        isNew={isNew}
+        selectedId={this.props.selectedId}
+        isNew={this.props.isNew}
       />
-    );
+    )
   }
 }
 
 const connector = connect(
   (state, props) => ({
-    selectedTodoId: props.match.params._id,
+    selectedId: state.todoState.selectedId,
     isNew: props.match.params._id === 'new',
   }),
-  {
-    fetchTodos: actionCreators.fetchTodos,
-  },
-);
+)
 
-export default connector(TodosContainer);
+export default connector(TodosContainer)

@@ -1,10 +1,10 @@
-import React, { PureComponent } from 'react';
-import PropTypes from 'prop-types';
-import { Button, Divider, Grid, ListItem, Paper } from '@material-ui/core';
-import { withStyles } from '@material-ui/core/styles';
-import i18n from 'i18next';
+import React, { PureComponent } from 'react'
+import PropTypes from 'prop-types'
+import { Button, Divider, FormControlLabel, Grid, ListItem, Paper, Switch } from '@material-ui/core'
+import { withStyles } from '@material-ui/core/styles'
+import i18n from 'i18next'
 
-import TodoForm from '../TodoForm/TodoForm';
+import TodoForm from '../TodoForm/TodoForm'
 
 const styleSheet = theme => ({
   rootContainer: {
@@ -17,7 +17,7 @@ const styleSheet = theme => ({
   button: {
     margin: theme.spacing.unit,
   },
-});
+})
 
 class TodoEdit extends PureComponent {
   static propTypes = {
@@ -30,34 +30,39 @@ class TodoEdit extends PureComponent {
   }
 
   handleTitleChange = (event) => {
-    const { modify } = this.props;
-    modify({ title: event.target.value });
+    const { modify } = this.props
+    modify({ title: event.target.value })
   }
 
   handleDescriptionChange = (event) => {
-    const { modify } = this.props;
-    modify({ description: event.target.value });
+    const { modify } = this.props
+    modify({ description: event.target.value })
   }
 
   handleNotesChange = (event) => {
-    const { modify } = this.props;
-    modify({ notes: event.target.value });
+    const { modify } = this.props
+    modify({ notes: event.target.value })
   }
 
   handleSaveClick = () => {
-    const { save } = this.props;
-    save();
+    const { save } = this.props
+    save()
   }
 
   handleRemoveClick = () => {
-    const { remove } = this.props;
-    remove();
+    const { remove } = this.props
+    remove()
+  }
+
+  handleCompletedChange = (event) => {
+    const { modify } = this.props
+    modify({ completed: event.target.checked })
   }
 
   render() {
-    const { classes, todo, meta } = this.props;
+    const { classes, todo, meta } = this.props
 
-    const isDisabled = !meta.isLoaded || meta.isLoading || meta.isSaving;
+    const isDisabled = !meta.isLoaded || meta.isLoading || meta.isSaving
 
     return (
       <div className={classes.rootContainer}>
@@ -72,7 +77,17 @@ class TodoEdit extends PureComponent {
             changeNotes={this.handleNotesChange}
           />
           <Divider />
-          <ListItem justify='flex-end'>
+          <ListItem justify='space-between'>
+            <FormControlLabel
+              control={
+                <Switch
+                  checked={todo.completed}
+                  onChange={this.handleCompletedChange}
+                  color="primary"
+                />
+              }
+              label={i18n.t('Todo:completed')}
+            />
             <Grid container justify='flex-end'>
               <Grid item>
                 <Button variant='contained' color='secondary' onClick={this.handleRemoveClick} className={classes.button} disabled={isDisabled}>
@@ -88,8 +103,8 @@ class TodoEdit extends PureComponent {
           </ListItem>
         </Paper>
       </div>
-    );
+    )
   }
 }
 
-export default withStyles(styleSheet)(TodoEdit);
+export default withStyles(styleSheet)(TodoEdit)

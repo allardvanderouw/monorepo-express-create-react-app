@@ -1,22 +1,17 @@
-import React, { Fragment, PureComponent } from 'react';
-import PropTypes from 'prop-types';
+import React, { Fragment, PureComponent } from 'react'
 
-import TodoFilterContainer from './TodoFilter/TodoFilterContainer';
-import TodoListContainer from './TodoList/TodoListContainer';
+import TodoFilterContainer from './TodoFilter/TodoFilterContainer'
+import TodoListContainer from './TodoList/TodoListContainer'
 
 class TodoMaster extends PureComponent {
-  static propTypes = { selectedTodoId: PropTypes.string }
-
   render() {
-    const { selectedTodoId } = this.props;
-
     return (
       <Fragment>
         <TodoFilterContainer />
-        <TodoListContainer selectedTodoId={selectedTodoId} />
+        <TodoListContainer />
       </Fragment>
-    );
+    )
   }
 }
 
-export default TodoMaster;
+export default TodoMaster

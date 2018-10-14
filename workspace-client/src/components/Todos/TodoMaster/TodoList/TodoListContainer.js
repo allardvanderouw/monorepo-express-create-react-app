@@ -1,34 +1,34 @@
-import React, { PureComponent } from 'react';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
+import React, { PureComponent } from 'react'
+import PropTypes from 'prop-types'
+import { connect } from 'react-redux'
 
-import TodoList from './TodoList';
+import { filteredTodosSelector } from '../../../../store/todos/selectors'
+import TodoList from './TodoList'
 
 class TodoListContainer extends PureComponent {
   static propTypes = {
     isLoading: PropTypes.bool.isRequired,
-    selectedTodoId: PropTypes.string,
+    selectedId: PropTypes.string,
     todos: PropTypes.array,
   }
 
   render() {
-    const { isLoading, todos, selectedTodoId } = this.props;
-
     return (
       <TodoList
-        selectedTodoId={selectedTodoId}
-        todos={todos}
-        isLoading={isLoading} />
-    );
+        selectedTodoId={this.props.selectedId}
+        todos={this.props.todos}
+        isLoading={this.props.isLoading}
+      />
+    )
   }
 }
 
 const connector = connect(
-  (state, props) => ({
-    todos: state.todosState.todos,
-    selectedTodoId: props.selectedTodoId,
+  state => ({
+    todos: filteredTodosSelector(state.todosState.todos, state.todosState.filter.query),
+    selectedId: state.todoState.selectedId,
     isLoading: state.todosState.meta.isLoading,
   }),
-);
+)
 
-export default connector(TodoListContainer);
+export default connector(TodoListContainer)

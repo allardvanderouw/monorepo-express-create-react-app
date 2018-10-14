@@ -1,7 +1,8 @@
-import React, { PureComponent } from 'react';
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
-import NavigationContainer from '../Navigation/NavigationContainer';
+import React, { PureComponent } from 'react'
+import PropTypes from 'prop-types'
+import { withStyles } from '@material-ui/core/styles'
+import NavigationContainer from '../Navigation/NavigationContainer'
+import NotificationsContainer from '../Notifications/NotificationsContainer'
 
 const styleSheet = theme => ({
   root: {
@@ -21,7 +22,7 @@ const styleSheet = theme => ({
     height: '100%',
     flexGrow: 1,
   },
-});
+})
 
 class App extends PureComponent {
   static propTypes = {
@@ -30,17 +31,18 @@ class App extends PureComponent {
   }
 
   render() {
-    const { children, classes } = this.props;
+    const { children, classes } = this.props
 
     return (
       <div className={classes.root}>
         <NavigationContainer />
+        <NotificationsContainer />
         <div className={classes.content}>
           {children}
         </div>
       </div>
-    );
+    )
   }
 }
 
-export default withStyles(styleSheet)(App);
+export default withStyles(styleSheet)(App)
