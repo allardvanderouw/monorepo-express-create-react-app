@@ -8,6 +8,7 @@ const stopServer = async (signal) => {
   logger.info(`Stopping server with signal: ${signal}`)
   await expressAdapter.close()
   await dbAdapter.close()
+  process.exit()
 }
 
 const startServer = async ({
