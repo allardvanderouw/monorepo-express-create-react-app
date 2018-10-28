@@ -55,10 +55,10 @@ class TopBar extends PureComponent {
         position="absolute"
         className={classNames(classes.appBar, isSideMenuOpen && classes.appBarShift)}>
         <Toolbar>
-          <IconButton className={classNames(classes.menuButton, isSideMenuOpen && classes.hide)} color='inherit' onClick={showSideMenu}>
+          <IconButton className={classNames(classes.menuButton, isSideMenuOpen && classes.hide)} color="inherit" onClick={showSideMenu}>
             <MenuIcon />
           </IconButton>
-          <Typography variant='title' color='inherit' className={classes.flex}>
+          <Typography variant="title" color="inherit" className={classes.flex}>
             {i18n.t('Main:title')}
           </Typography>
         </Toolbar>

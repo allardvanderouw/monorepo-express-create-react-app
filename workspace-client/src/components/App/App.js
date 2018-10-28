@@ -16,10 +16,9 @@ const styleSheet = theme => ({
     flexGrow: 1,
   },
   content: {
-    '@media (min-width:0px) and (orientation: landscape)': { paddingTop: theme.mixins.toolbar['@media (min-width:0px) and (orientation: landscape)'].minHeight },
-    '@media (min-width:600px)': { paddingTop: theme.mixins.toolbar['@media (min-width:600px)'].minHeight },
-    paddingTop: theme.mixins.toolbar.minHeight,
-    height: '100%',
+    '@media (min-width:0px) and (orientation: landscape)': { marginTop: theme.mixins.toolbar['@media (min-width:0px) and (orientation: landscape)'].minHeight },
+    '@media (min-width:600px)': { marginTop: theme.mixins.toolbar['@media (min-width:600px)'].minHeight },
+    marginTop: theme.mixins.toolbar.minHeight,
     flexGrow: 1,
   },
 })

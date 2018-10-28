@@ -1,15 +1,15 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import { withStyles } from '@material-ui/core/styles'
-import { IconButton, List, ListItem, TextField } from '@material-ui/core'
+import { IconButton, ListItem, TextField } from '@material-ui/core'
 import RefreshIcon from '@material-ui/icons/Refresh'
 import i18n from 'i18next'
 
 const styleSheet = theme => ({
   filter: {
+    width: '100%',
     backgroundColor: theme.palette.background.paper,
     borderRight: `1px solid ${theme.palette.divider}`,
-    display: 'flex',
   },
   input: { flex: 1 },
 })
@@ -31,19 +31,17 @@ class TodoFilter extends PureComponent {
     const { classes, isLoading, query, refresh } = this.props
 
     return (
-      <List className={classes.filter}>
-        <ListItem divider>
-          <TextField
-            label={i18n.t('Todos:Filter:search')}
-            className={classes.input}
-            value={query}
-            onChange={this.handleQueryChange}
-          />
-          <IconButton className={classes.refreshIcon} onClick={refresh} disabled={isLoading}>
-            <RefreshIcon />
-          </IconButton>
-        </ListItem>
-      </List>
+      <ListItem divider className={classes.filter}>
+        <TextField fullWidth
+          label={i18n.t('Todos:Filter:search')}
+          className={classes.input}
+          value={query}
+          onChange={this.handleQueryChange}
+        />
+        <IconButton className={classes.refreshIcon} onClick={refresh} disabled={isLoading}>
+          <RefreshIcon />
+        </IconButton>
+      </ListItem>
     )
   }
 }

@@ -11,9 +11,10 @@ import Loading from '../../../Shared/Loading'
 
 const styleSheet = theme => ({
   content: {
-    height: '100%',
+    flex: '1',
     backgroundColor: theme.palette.background.paper,
     borderRight: `1px solid ${theme.palette.divider}`,
+    overflow: 'scroll',
   },
   addNewTodoIcon: {
     backgroundColor: theme.palette.primary.main,
@@ -50,7 +51,7 @@ class TodoList extends PureComponent {
     let content
     if (todos.length === 0) {
       content = [(
-        <ListItem divider key='EmptyTodos'>
+        <ListItem divider key="EmptyTodos">
           <ListItemText primary={i18n.t('Todos:empty')} />
         </ListItem>
       )]
@@ -65,7 +66,7 @@ class TodoList extends PureComponent {
     }
 
     const addNewTodo = (
-      <ListItem key='AddNewTodo' button component={Link} to={'/new'}>
+      <ListItem key="AddNewTodo" button component={Link} to={'/new'}>
         <ListItemAvatar>
           <Avatar className={classes.addNewTodoIcon}>
             <AddIcon />

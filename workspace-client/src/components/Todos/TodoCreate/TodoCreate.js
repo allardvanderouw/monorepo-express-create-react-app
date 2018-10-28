@@ -13,6 +13,7 @@ const styleSheet = theme => ({
     paddingTop: theme.spacing.unit * 2,
     paddingBottom: theme.spacing.unit * 2,
     backgroundColor: theme.palette.background.default,
+    overflow: 'scroll',
   },
   button: {
     margin: theme.spacing.unit,
@@ -66,9 +67,9 @@ class TodoCreate extends PureComponent {
             changeNotes={this.handleNotesChange}
           />
           <Divider />
-          <ListItem justify='flex-end'>
-            <Grid container justify='flex-end'>
-              <Button variant='contained' color='primary' onClick={this.handleAddClick} className={classes.button} disabled={isDisabled}>
+          <ListItem justify="flex-end">
+            <Grid container justify="flex-end">
+              <Button variant="contained" color="primary" onClick={this.handleAddClick} className={classes.button} disabled={isDisabled}>
                 {i18n.t('Todo:add')}
               </Button>
             </Grid>

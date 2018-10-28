@@ -13,6 +13,8 @@ const styleSheet = theme => ({
     paddingTop: theme.spacing.unit * 2,
     paddingBottom: theme.spacing.unit * 2,
     backgroundColor: theme.palette.background.default,
+    overflow: 'scroll',
+    boxSizing: 'border-box',
   },
   button: {
     margin: theme.spacing.unit,
@@ -77,7 +79,7 @@ class TodoEdit extends PureComponent {
             changeNotes={this.handleNotesChange}
           />
           <Divider />
-          <ListItem justify='space-between'>
+          <ListItem justify="space-between">
             <FormControlLabel
               control={
                 <Switch
@@ -88,14 +90,14 @@ class TodoEdit extends PureComponent {
               }
               label={i18n.t('Todo:completed')}
             />
-            <Grid container justify='flex-end'>
+            <Grid container justify="flex-end">
               <Grid item>
-                <Button variant='contained' color='secondary' onClick={this.handleRemoveClick} className={classes.button} disabled={isDisabled}>
+                <Button variant="contained" color="secondary" onClick={this.handleRemoveClick} className={classes.button} disabled={isDisabled}>
                   {i18n.t('Todo:remove')}
                 </Button>
               </Grid>
               <Grid item>
-                <Button variant='contained' color='primary' onClick={this.handleSaveClick} className={classes.button} disabled={isDisabled}>
+                <Button variant="contained" color="primary" onClick={this.handleSaveClick} className={classes.button} disabled={isDisabled}>
                   {i18n.t('Todo:save')}
                 </Button>
               </Grid>

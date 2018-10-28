@@ -55,10 +55,10 @@ class SideMenu extends PureComponent {
     const { classes, isSideMenuOpen, hideSideMenu } = this.props
 
     const drawerContent = (
-      <List component='nav' onClick={hideSideMenu} className={classes.menuList}>
+      <List component="nav" onClick={hideSideMenu} className={classes.menuList}>
         <ListItem divider className={classes.menuHeader}>
           <ListItemText>
-            <Typography variant='title'>
+            <Typography variant="title">
               {i18n.t('Main:title')}
             </Typography>
           </ListItemText>
@@ -81,7 +81,7 @@ class SideMenu extends PureComponent {
       <Fragment>
         <Hidden xsDown>
           <Drawer
-            variant='permanent'
+            variant="permanent"
             classes={{ paper: classNames(classes.drawerPaper, !isSideMenuOpen && classes.drawerPaperClose) }}
             open={isSideMenuOpen}
             onClose={hideSideMenu}
@@ -91,7 +91,7 @@ class SideMenu extends PureComponent {
         </Hidden>
         <Hidden smUp>
           <Drawer
-            variant='temporary'
+            variant="temporary"
             classes={{ paper: classNames(classes.drawerPaper, !isSideMenuOpen && classes.drawerPaperClose) }}
             open={isSideMenuOpen}
             onClose={hideSideMenu}

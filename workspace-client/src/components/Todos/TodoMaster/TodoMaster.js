@@ -1,17 +1,35 @@
-import React, { Fragment, PureComponent } from 'react'
+import React, { PureComponent } from 'react'
+import PropTypes from 'prop-types'
+import { Grid } from '@material-ui/core'
+import { withStyles } from '@material-ui/core/styles'
 
 import TodoFilterContainer from './TodoFilter/TodoFilterContainer'
 import TodoListContainer from './TodoList/TodoListContainer'
 
-class TodoMaster extends PureComponent {
+const styleSheet = theme => ({
+  container: {
+    height: '100%',
+    backgroundColor: theme.palette.background.default,
+    display: 'flex',
+    flexDirection: 'column',
+  },
+})
+
+class Master extends PureComponent {
+  static propTypes = {
+    classes: PropTypes.object.isRequired,
+  }
+
   render() {
+    const { classes } = this.props
+
     return (
-      <Fragment>
+      <Grid container className={classes.container}>
         <TodoFilterContainer />
         <TodoListContainer />
-      </Fragment>
+      </Grid>
     )
   }
 }
 
-export default TodoMaster
+export default withStyles(styleSheet)(Master)
