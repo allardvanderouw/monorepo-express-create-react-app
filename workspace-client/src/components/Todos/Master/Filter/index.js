@@ -3,9 +3,9 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 
 import { refresh, search } from '../../../../store/todos/actionCreators'
-import TodoFilter from './TodoFilter'
+import Filter from './Filter'
 
-class TodoFilterContainer extends PureComponent {
+class FilterContainer extends PureComponent {
   static propTypes = {
     isLoading: PropTypes.bool.isRequired,
     query: PropTypes.string.isRequired,
@@ -15,7 +15,7 @@ class TodoFilterContainer extends PureComponent {
 
   render() {
     return (
-      <TodoFilter
+      <Filter
         isLoading={this.props.isLoading}
         query={this.props.query}
         refresh={this.props.refresh}
@@ -36,4 +36,4 @@ const connector = connect(
   },
 )
 
-export default connector(TodoFilterContainer)
+export default connector(FilterContainer)

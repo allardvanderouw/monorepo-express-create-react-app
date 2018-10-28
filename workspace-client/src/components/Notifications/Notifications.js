@@ -11,7 +11,7 @@ const styles = theme => ({
   },
 })
 
-class ConsecutiveSnackbars extends React.Component {
+class NotificationsComponent extends React.Component {
   static propTypes = {
     classes: PropTypes.object.isRequired,
     notifications: PropTypes.array.isRequired,
@@ -81,4 +81,4 @@ class ConsecutiveSnackbars extends React.Component {
   }
 }
 
-export default withStyles(styles)(ConsecutiveSnackbars)
+export default withStyles(styles)(NotificationsComponent)

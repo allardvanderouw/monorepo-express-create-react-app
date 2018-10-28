@@ -3,9 +3,9 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 
 import { filteredTodosSelector } from '../../../../store/todos/selectors'
-import TodoList from './TodoList'
+import List from './List'
 
-class TodoListContainer extends PureComponent {
+class ListContainer extends PureComponent {
   static propTypes = {
     isLoading: PropTypes.bool.isRequired,
     selectedId: PropTypes.string,
@@ -14,7 +14,7 @@ class TodoListContainer extends PureComponent {
 
   render() {
     return (
-      <TodoList
+      <List
         selectedTodoId={this.props.selectedId}
         todos={this.props.todos}
         isLoading={this.props.isLoading}
@@ -31,4 +31,4 @@ const connector = connect(
   }),
 )
 
-export default connector(TodoListContainer)
+export default connector(ListContainer)

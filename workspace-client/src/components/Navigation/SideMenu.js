@@ -43,7 +43,7 @@ const styleSheet = theme => ({
   },
 })
 
-class SideMenu extends PureComponent {
+class SideMenuComponent extends PureComponent {
   static propTypes = {
     classes: PropTypes.object.isRequired,
     isSideMenuOpen: PropTypes.bool.isRequired,
@@ -68,7 +68,7 @@ class SideMenu extends PureComponent {
             </IconButton>
           </ListItemSecondaryAction>
         </ListItem>
-        <ListItem button component={Link} to="/">
+        <ListItem button component={Link} to="/todos">
           <IconButton className={classes.menuIcon}>
             <ListIcon />
           </IconButton>
@@ -104,4 +104,4 @@ class SideMenu extends PureComponent {
   }
 }
 
-export default withStyles(styleSheet)(SideMenu)
+export default withStyles(styleSheet)(SideMenuComponent)

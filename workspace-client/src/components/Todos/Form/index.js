@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { List, ListItem, TextField } from '@material-ui/core'
 import i18n from 'i18next'
 
-class TodoForm extends PureComponent {
+class FormComponent extends PureComponent {
   static propTypes = {
     title: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired,
@@ -51,4 +51,4 @@ class TodoForm extends PureComponent {
   }
 }
 
-export default TodoForm
+export default FormComponent

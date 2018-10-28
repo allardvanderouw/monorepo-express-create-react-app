@@ -3,9 +3,9 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 
 import { deselect, add, modify } from '../../../store/todo/actionCreators'
-import TodoCreate from './TodoCreate'
+import Create from './Create'
 
-class TodoCreateContainer extends PureComponent {
+class CreateContainer extends PureComponent {
   static propTypes ={
     todo: PropTypes.object.isRequired,
     isAdding: PropTypes.bool.isRequired,
@@ -16,7 +16,7 @@ class TodoCreateContainer extends PureComponent {
 
   render() {
     return (
-      <TodoCreate
+      <Create
         todo={this.props.todo}
         isAdding={this.props.isAdding}
         add={this.props.add}
@@ -38,4 +38,4 @@ const connector = connect(
   },
 )
 
-export default connector(TodoCreateContainer)
+export default connector(CreateContainer)

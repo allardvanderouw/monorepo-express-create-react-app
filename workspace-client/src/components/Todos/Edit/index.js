@@ -3,9 +3,9 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 
 import { deselect, save, remove, modify } from '../../../store/todo/actionCreators'
-import TodoEdit from './TodoEdit'
+import Edit from './Edit'
 
-class TodoEditContainer extends PureComponent {
+class EditContainer extends PureComponent {
   static propTypes ={
     selectedId: PropTypes.string,
     todo: PropTypes.object,
@@ -23,7 +23,7 @@ class TodoEditContainer extends PureComponent {
     }
 
     return (
-      <TodoEdit
+      <Edit
         todo={this.props.todo}
         meta={this.props.meta}
         save={this.props.save}
@@ -48,4 +48,4 @@ const connector = connect(
   },
 )
 
-export default connector(TodoEditContainer)
+export default connector(EditContainer)

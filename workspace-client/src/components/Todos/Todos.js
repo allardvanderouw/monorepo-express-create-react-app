@@ -3,15 +3,15 @@ import PropTypes from 'prop-types'
 import { Grid, Hidden } from '@material-ui/core'
 import { withStyles } from '@material-ui/core/styles'
 
-import TodoMasterContainer from './TodoMaster/TodoMasterContainer'
-import TodoCreateContainer from './TodoCreate/TodoCreateContainer'
-import TodoEditContainer from './TodoEdit/TodoEditContainer'
+import MasterContainer from './Master'
+import CreateContainer from './Create'
+import EditContainer from './Edit'
 
 const styleSheet = {
   container: { height: '100%' },
 }
 
-class Todos extends PureComponent {
+class TodosComponent extends PureComponent {
   static propTypes = {
     classes: PropTypes.object.isRequired,
     selectedId: PropTypes.string,
@@ -24,11 +24,11 @@ class Todos extends PureComponent {
     let detailContext
     if (isNew) {
       detailContext = (
-        <TodoCreateContainer />
+        <CreateContainer />
       )
     } else if (selectedId) {
       detailContext = (
-        <TodoEditContainer />
+        <EditContainer />
       )
     }
 
@@ -36,7 +36,7 @@ class Todos extends PureComponent {
       <Grid container className={classes.container}>
         <Hidden smDown={!!detailContext}>
           <Grid item md={4} xs={12}>
-            <TodoMasterContainer />
+            <MasterContainer />
           </Grid>
         </Hidden>
         <Hidden smDown={!detailContext}>
@@ -49,4 +49,4 @@ class Todos extends PureComponent {
   }
 }
 
-export default withStyles(styleSheet)(Todos)
+export default withStyles(styleSheet)(TodosComponent)

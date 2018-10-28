@@ -4,7 +4,7 @@ import { Button, Divider, FormControlLabel, Grid, ListItem, Paper, Switch } from
 import { withStyles } from '@material-ui/core/styles'
 import i18n from 'i18next'
 
-import TodoForm from '../TodoForm/TodoForm'
+import Form from '../Form'
 
 const styleSheet = theme => ({
   rootContainer: {
@@ -21,7 +21,7 @@ const styleSheet = theme => ({
   },
 })
 
-class TodoEdit extends PureComponent {
+class EditComponent extends PureComponent {
   static propTypes = {
     classes: PropTypes.object.isRequired,
     todo: PropTypes.object.isRequired,
@@ -69,7 +69,7 @@ class TodoEdit extends PureComponent {
     return (
       <div className={classes.rootContainer}>
         <Paper>
-          <TodoForm
+          <Form
             disabled={isDisabled}
             title={todo.title}
             description={todo.description}
@@ -109,4 +109,4 @@ class TodoEdit extends PureComponent {
   }
 }
 
-export default withStyles(styleSheet)(TodoEdit)
+export default withStyles(styleSheet)(EditComponent)

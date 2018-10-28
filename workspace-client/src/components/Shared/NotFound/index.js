@@ -13,7 +13,7 @@ const styleSheet = theme => ({
   },
 })
 
-class NotFound extends PureComponent {
+class NotFoundComponent extends PureComponent {
   static propTypes = {
     classes: PropTypes.object.isRequired,
     description: PropTypes.string,
@@ -32,4 +32,4 @@ class NotFound extends PureComponent {
   }
 }
 
-export default withStyles(styleSheet)(NotFound)
+export default withStyles(styleSheet)(NotFoundComponent)

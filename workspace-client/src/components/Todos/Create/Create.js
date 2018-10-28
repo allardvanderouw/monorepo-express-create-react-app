@@ -4,7 +4,7 @@ import { Button, Divider, Grid, ListItem, Paper } from '@material-ui/core'
 import { withStyles } from '@material-ui/core/styles'
 import i18n from 'i18next'
 
-import TodoForm from '../TodoForm/TodoForm'
+import Form from '../Form'
 
 const styleSheet = theme => ({
   rootContainer: {
@@ -20,7 +20,7 @@ const styleSheet = theme => ({
   },
 })
 
-class TodoCreate extends PureComponent {
+class CreateComponent extends PureComponent {
   static propTypes = {
     classes: PropTypes.object.isRequired,
     todo: PropTypes.object.isRequired,
@@ -57,7 +57,7 @@ class TodoCreate extends PureComponent {
     return (
       <div className={classes.rootContainer}>
         <Paper>
-          <TodoForm
+          <Form
             disabled={isDisabled}
             title={todo.title}
             description={todo.description}
@@ -80,4 +80,4 @@ class TodoCreate extends PureComponent {
   }
 }
 
-export default withStyles(styleSheet)(TodoCreate)
+export default withStyles(styleSheet)(CreateComponent)

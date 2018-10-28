@@ -1,8 +1,8 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import { withStyles } from '@material-ui/core/styles'
-import NavigationContainer from '../Navigation/NavigationContainer'
-import NotificationsContainer from '../Notifications/NotificationsContainer'
+import NavigationContainer from '../Navigation'
+import NotificationsContainer from '../Notifications'
 
 const styleSheet = theme => ({
   root: {
@@ -23,7 +23,7 @@ const styleSheet = theme => ({
   },
 })
 
-class App extends PureComponent {
+class AppComponent extends PureComponent {
   static propTypes = {
     children: PropTypes.node,
     classes: PropTypes.object.isRequired,
@@ -44,4 +44,4 @@ class App extends PureComponent {
   }
 }
 
-export default withStyles(styleSheet)(App)
+export default withStyles(styleSheet)(AppComponent)

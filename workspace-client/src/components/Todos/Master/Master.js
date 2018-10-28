@@ -3,8 +3,8 @@ import PropTypes from 'prop-types'
 import { Grid } from '@material-ui/core'
 import { withStyles } from '@material-ui/core/styles'
 
-import TodoFilterContainer from './TodoFilter/TodoFilterContainer'
-import TodoListContainer from './TodoList/TodoListContainer'
+import FilterContainer from './Filter'
+import ListContainer from './List'
 
 const styleSheet = theme => ({
   container: {
@@ -15,7 +15,7 @@ const styleSheet = theme => ({
   },
 })
 
-class Master extends PureComponent {
+class MasterComponent extends PureComponent {
   static propTypes = {
     classes: PropTypes.object.isRequired,
   }
@@ -25,11 +25,11 @@ class Master extends PureComponent {
 
     return (
       <Grid container className={classes.container}>
-        <TodoFilterContainer />
-        <TodoListContainer />
+        <FilterContainer />
+        <ListContainer />
       </Grid>
     )
   }
 }
 
-export default withStyles(styleSheet)(Master)
+export default withStyles(styleSheet)(MasterComponent)

@@ -14,7 +14,7 @@ const styleSheet = theme => ({
   loadingText: { marginTop: 16 },
 })
 
-class Loading extends PureComponent {
+class LoadingComponent extends PureComponent {
   static propTypes = {
     classes: PropTypes.object.isRequired,
     message: PropTypes.string.isRequired,
@@ -32,4 +32,4 @@ class Loading extends PureComponent {
   }
 }
 
-export default withStyles(styleSheet)(Loading)
+export default withStyles(styleSheet)(LoadingComponent)

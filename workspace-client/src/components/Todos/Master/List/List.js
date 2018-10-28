@@ -1,12 +1,11 @@
 import React, { PureComponent } from 'react'
-import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
-import { Avatar, List, ListItem, ListItemAvatar, ListItemText, Typography } from '@material-ui/core'
+import { List, ListItemText } from '@material-ui/core'
 import { withStyles } from '@material-ui/core/styles'
-import AddIcon from '@material-ui/icons/Add'
 import i18n from 'i18next'
 
-import TodoListItem from './TodoListItem'
+import ListItem from './ListItem'
+import AddNew from '../AddNew'
 import Loading from '../../../Shared/Loading'
 
 const styleSheet = theme => ({
@@ -24,7 +23,7 @@ const styleSheet = theme => ({
   },
 })
 
-class TodoList extends PureComponent {
+class ListComponent extends PureComponent {
   static propTypes = {
     classes: PropTypes.object.isRequired,
     isLoading: PropTypes.bool.isRequired,
@@ -57,7 +56,7 @@ class TodoList extends PureComponent {
       )]
     } else {
       content = todos.map(todo => (
-        <TodoListItem
+        <ListItem
           key={todo._id}
           todo={todo}
           selected={todo._id === selectedTodoId}
@@ -65,24 +64,7 @@ class TodoList extends PureComponent {
       ))
     }
 
-    const addNewTodo = (
-      <ListItem key="AddNewTodo" button component={Link} to={'/new'}>
-        <ListItemAvatar>
-          <Avatar className={classes.addNewTodoIcon}>
-            <AddIcon />
-          </Avatar>
-        </ListItemAvatar>
-        <ListItemText
-          primary={(
-            <Typography variant="subheading" className={classes.addNewTodoText}>
-              {i18n.t('Todos:addNewTodo')}
-            </Typography>
-          )}
-        />
-      </ListItem>
-    )
-
-    content = content.concat(addNewTodo)
+    content = content.concat(<AddNew key="AddNew" />)
 
     return (
       <List disablePadding className={classes.content}>
@@ -92,4 +74,4 @@ class TodoList extends PureComponent {
   }
 }
 
-export default withStyles(styleSheet)(TodoList)
+export default withStyles(styleSheet)(ListComponent)

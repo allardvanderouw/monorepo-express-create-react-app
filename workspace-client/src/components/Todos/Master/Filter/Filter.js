@@ -14,7 +14,7 @@ const styleSheet = theme => ({
   input: { flex: 1 },
 })
 
-class TodoFilter extends PureComponent {
+class FilterComponent extends PureComponent {
   static propTypes = {
     classes: PropTypes.object.isRequired,
     isLoading: PropTypes.bool.isRequired,
@@ -46,4 +46,4 @@ class TodoFilter extends PureComponent {
   }
 }
 
-export default withStyles(styleSheet)(TodoFilter)
+export default withStyles(styleSheet)(FilterComponent)

@@ -12,7 +12,7 @@ const styleSheet = theme => ({
   completed: { backgroundColor: green[500] },
 })
 
-class TodoListItem extends PureComponent {
+class ListItemComponent extends PureComponent {
   static propTypes = {
     classes: PropTypes.object.isRequired,
     todo: PropTypes.object.isRequired,
@@ -36,7 +36,7 @@ class TodoListItem extends PureComponent {
     }
 
     return (
-      <ListItem divider button component={Link} to={`/${todo._id}`} className={classNames(selected && classes.active)}>
+      <ListItem divider button component={Link} to={`/todos/${todo._id}`} className={classNames(selected && classes.active)}>
         {avatar}
         <ListItemText primary={todo.title} secondary={todo.description} />
       </ListItem>
@@ -44,4 +44,4 @@ class TodoListItem extends PureComponent {
   }
 }
 
-export default withStyles(styleSheet)(TodoListItem)
+export default withStyles(styleSheet)(ListItemComponent)

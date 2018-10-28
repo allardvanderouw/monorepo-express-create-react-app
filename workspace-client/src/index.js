@@ -7,7 +7,7 @@ import { createMuiTheme, MuiThemeProvider } from '@material-ui/core/styles'
 import { blue } from '@material-ui/core/colors'
 import i18n from 'i18next'
 
-import AppContainer from './components/App/AppContainer'
+import AppContainer from './components/App'
 import locales from './locales'
 import configureStore from './store/configureStore'
 

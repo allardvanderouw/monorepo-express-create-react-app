@@ -36,7 +36,7 @@ const styleSheet = theme => ({
   },
 })
 
-class TopBar extends PureComponent {
+class TopBarComponent extends PureComponent {
   static propTypes = {
     classes: PropTypes.object.isRequired,
     isSideMenuOpen: PropTypes.bool.isRequired,
@@ -67,4 +67,4 @@ class TopBar extends PureComponent {
   }
 }
 
-export default withStyles(styleSheet)(TopBar)
+export default withStyles(styleSheet)(TopBarComponent)

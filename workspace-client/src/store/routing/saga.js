@@ -11,8 +11,8 @@ function* changeLocation() {
     const { pathname } = action.payload.location
 
     const paths = [
-      '/',
-      '/:_id',
+      '/todos',
+      '/todos/:_id',
     ]
 
     // Check if a paths are matched from the location route
@@ -23,11 +23,11 @@ function* changeLocation() {
 
       // Call side-effects depending on matched paths
       switch (matchedPath) {
-        case '/': {
+        case '/todos': {
           return put(routeToTodos(isExact))
         }
 
-        case '/:_id': {
+        case '/todos/:_id': {
           return put(routeToTodo(params._id))
         }
 
