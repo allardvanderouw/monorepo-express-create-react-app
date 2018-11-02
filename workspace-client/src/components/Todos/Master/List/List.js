@@ -1,10 +1,10 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
-import { List, ListItemText } from '@material-ui/core'
+import { List, ListItem, ListItemText } from '@material-ui/core'
 import { withStyles } from '@material-ui/core/styles'
 import i18n from 'i18next'
 
-import ListItem from './ListItem'
+import TodoListItem from './ListItem'
 import AddNew from '../AddNew'
 import Loading from '../../../Shared/Loading'
 
@@ -56,7 +56,7 @@ class ListComponent extends PureComponent {
       )]
     } else {
       content = todos.map(todo => (
-        <ListItem
+        <TodoListItem
           key={todo._id}
           todo={todo}
           selected={todo._id === selectedTodoId}
