@@ -45,7 +45,7 @@ function* add() {
     try {
       const created = yield call(apiTodos.add, todo)
       yield put(actionCreators.addSuccess(created))
-      yield put(push(`/${created._id}`))
+      yield put(push(`/todos/${created._id}`))
       yield put(addNotification({ message: i18n.t('Todo:added') }))
     } catch (error) {
       const message = (error && error.message) ? error.message : i18n.t('Todos:unknownError')
