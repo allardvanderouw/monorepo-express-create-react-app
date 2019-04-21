@@ -8,7 +8,7 @@ import CreateContainer from './Create'
 import EditContainer from './Edit'
 
 const styleSheet = {
-  container: { height: '100%' },
+  fullHeight: { height: '100%' },
 }
 
 class TodosComponent extends PureComponent {
@@ -24,23 +24,23 @@ class TodosComponent extends PureComponent {
     let detailContext
     if (isNew) {
       detailContext = (
-        <CreateContainer />
+        <CreateContainer key={selectedId} />
       )
     } else if (selectedId) {
       detailContext = (
-        <EditContainer />
+        <EditContainer key={selectedId} selectedId={selectedId} />
       )
     }
 
     return (
-      <Grid container className={classes.container}>
+      <Grid container className={classes.fullHeight}>
         <Hidden smDown={!!detailContext}>
-          <Grid item md={4} xs={12}>
-            <MasterContainer />
+          <Grid item md={4} xs={12} className={classes.fullHeight}>
+            <MasterContainer selectedId={selectedId} />
           </Grid>
         </Hidden>
         <Hidden smDown={!detailContext}>
-          <Grid item md={8} xs={12}>
+          <Grid item md={8} xs={12} className={classes.fullHeight}>
             {detailContext}
           </Grid>
         </Hidden>

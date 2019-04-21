@@ -38,7 +38,7 @@ class AddNewComponent extends PureComponent {
         </ListItemAvatar>
         <ListItemText
           primary={(
-            <Typography variant="subheading" className={classes.addNewTodoText}>
+            <Typography variant="subtitle1" className={classes.addNewTodoText}>
               {i18n.t('Todos:addNewTodo')}
             </Typography>
           )}

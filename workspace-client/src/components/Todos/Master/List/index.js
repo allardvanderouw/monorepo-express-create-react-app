@@ -7,8 +7,8 @@ import List from './List'
 
 class ListContainer extends PureComponent {
   static propTypes = {
-    isLoading: PropTypes.bool.isRequired,
     selectedId: PropTypes.string,
+    isLoading: PropTypes.bool.isRequired,
     todos: PropTypes.array,
   }
 
@@ -26,7 +26,6 @@ class ListContainer extends PureComponent {
 const connector = connect(
   state => ({
     todos: filteredTodosSelector(state.todosState.todos, state.todosState.filter.query),
-    selectedId: state.todoState.selectedId,
     isLoading: state.todosState.meta.isLoading,
   }),
 )

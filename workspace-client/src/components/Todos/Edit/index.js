@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 
-import { deselect, save, remove, modify } from '../../../store/todo/actionCreators'
+import * as todoActionCreators from '../../../store/todo/actionCreators'
 import Edit from './Edit'
 
 class EditContainer extends PureComponent {
@@ -10,25 +10,34 @@ class EditContainer extends PureComponent {
     selectedId: PropTypes.string,
     todo: PropTypes.object,
     meta: PropTypes.object,
-    deselect: PropTypes.func.isRequired,
+    fetch: PropTypes.func.isRequired,
     save: PropTypes.func.isRequired,
     remove: PropTypes.func.isRequired,
     modify: PropTypes.func.isRequired,
   }
 
+  componentDidMount() {
+    const { selectedId, fetch } = this.props
+    if (selectedId) {
+      fetch(selectedId)
+    }
+  }
+
   render() {
+    const { selectedId, todo, meta, save, remove, modify } = this.props
+
     // No todo was selected
-    if (!this.props.selectedId) {
+    if (!selectedId) {
       return null
     }
 
     return (
       <Edit
-        todo={this.props.todo}
-        meta={this.props.meta}
-        save={this.props.save}
-        remove={this.props.remove}
-        modify={this.props.modify}
+        todo={todo}
+        meta={meta}
+        save={save}
+        remove={remove}
+        modify={modify}
       />
     )
   }
@@ -36,15 +45,14 @@ class EditContainer extends PureComponent {
 
 const connector = connect(
   state => ({
-    selectedId: state.todoState.selectedId,
     todo: state.todoState.todo,
     meta: state.todoState.meta,
   }),
   {
-    deselect,
-    save,
-    remove,
-    modify,
+    fetch: todoActionCreators.fetch,
+    save: todoActionCreators.save,
+    remove: todoActionCreators.remove,
+    modify: todoActionCreators.modify,
   },
 )
 

@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import { withStyles } from '@material-ui/core/styles'
-import { IconButton, ListItem, TextField } from '@material-ui/core'
+import { IconButton, List, ListItem, TextField } from '@material-ui/core'
 import RefreshIcon from '@material-ui/icons/Refresh'
 import i18n from 'i18next'
 
@@ -31,17 +31,19 @@ class FilterComponent extends PureComponent {
     const { classes, isLoading, query, refresh } = this.props
 
     return (
-      <ListItem divider className={classes.filter}>
-        <TextField fullWidth
-          label={i18n.t('Todos:Filter:search')}
-          className={classes.input}
-          value={query}
-          onChange={this.handleQueryChange}
-        />
-        <IconButton className={classes.refreshIcon} onClick={refresh} disabled={isLoading}>
-          <RefreshIcon />
-        </IconButton>
-      </ListItem>
+      <List disablePadding className={classes.filter}>
+        <ListItem divider>
+          <TextField fullWidth
+            label={i18n.t('Todos:Filter:search')}
+            className={classes.input}
+            value={query}
+            onChange={this.handleQueryChange}
+          />
+          <IconButton className={classes.refreshIcon} onClick={refresh} disabled={isLoading}>
+            <RefreshIcon />
+          </IconButton>
+        </ListItem>
+      </List>
     )
   }
 }

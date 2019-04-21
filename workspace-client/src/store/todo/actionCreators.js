@@ -1,23 +1,14 @@
 import * as actionTypes from './actionTypes'
 
-export const routeTo = _id => ({
-  type: actionTypes.ROUTE_TO,
+export const clear = () => ({
+  type: actionTypes.CLEAR,
+})
+
+export const fetch = _id => ({
+  type: actionTypes.FETCH,
   meta: {
     _id,
   },
-})
-
-export const create = () => ({
-  type: actionTypes.CREATE,
-})
-
-export const select = _id => ({
-  type: actionTypes.SELECT,
-  meta: { _id },
-})
-
-export const deselect = () => ({
-  type: actionTypes.DESELECT,
 })
 
 export const fetchFailure = (_id, message) => ({

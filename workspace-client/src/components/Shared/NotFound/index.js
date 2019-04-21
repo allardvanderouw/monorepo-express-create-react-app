@@ -25,7 +25,7 @@ class NotFoundComponent extends PureComponent {
 
     return (
       <div className={classes.notfound}>
-        <Typography variant="headline">{header}</Typography>
+        <Typography variant="h5">{header}</Typography>
         <Typography>{description}</Typography>
       </div>
     )

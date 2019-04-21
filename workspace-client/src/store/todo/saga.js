@@ -1,29 +1,15 @@
 import { all, call, fork, put, select, take } from 'redux-saga/effects'
-import { push } from 'connected-react-router'
 import i18n from 'i18next'
 
+import history from '../../utils/history'
 import * as apiTodos from '../../services/apiTodos'
 import * as actionTypes from './actionTypes'
 import * as actionCreators from './actionCreators'
 import { add as addNotification } from '../notifications/actionCreators'
 
-function* routeTo() {
-  while (true) {
-    const action = yield take(actionTypes.ROUTE_TO)
-    const selectedId = yield select(state => state.todoState.selectedId)
-
-    if (action.meta._id === 'new') {
-      yield put(actionCreators.create())
-    } else if (selectedId !== action.meta._id) {
-      // Another todo is selected
-      yield put(actionCreators.select(action.meta._id))
-    }
-  }
-}
-
 function* fetch() {
   while (true) {
-    const fetchAction = yield take(actionTypes.SELECT)
+    const fetchAction = yield take(actionTypes.FETCH)
     yield put(actionCreators.fetchRequest(fetchAction.meta._id))
     try {
       const todo = yield call(apiTodos.read, fetchAction.meta._id)
@@ -31,7 +17,7 @@ function* fetch() {
     } catch (error) {
       const message = (error && error.message) ? error.message : i18n.t('Todos:unknownError')
       yield put(actionCreators.fetchFailure(fetchAction.meta._id, message))
-      yield put(push('/'))
+      history.push('/')
       yield put(addNotification({ message }))
     }
   }
@@ -45,7 +31,7 @@ function* add() {
     try {
       const created = yield call(apiTodos.add, todo)
       yield put(actionCreators.addSuccess(created))
-      yield put(push(`/todos/${created._id}`))
+      history.push(`/todos/${created._id}`)
       yield put(addNotification({ message: i18n.t('Todo:added') }))
     } catch (error) {
       const message = (error && error.message) ? error.message : i18n.t('Todos:unknownError')
@@ -80,7 +66,7 @@ function* remove() {
     try {
       yield call(apiTodos.remove, todo._id)
       yield put(actionCreators.removeSuccess(todo._id))
-      yield put(push('/'))
+      history.push('/')
       yield put(addNotification({ message: i18n.t('Todo:removed') }))
     } catch (error) {
       const message = (error && error.message) ? error.message : i18n.t('Todos:unknownError')
@@ -92,7 +78,6 @@ function* remove() {
 
 export default function* rootSaga() {
   yield all([
-    routeTo,
     fetch,
     add,
     save,

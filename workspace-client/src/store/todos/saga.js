@@ -1,28 +1,10 @@
-import { all, call, fork, put, select, take } from 'redux-saga/effects'
+import { all, call, fork, put, take } from 'redux-saga/effects'
 import i18n from 'i18next'
 
 import * as api from '../../services/apiTodos'
 import * as actionTypes from './actionTypes'
 import { add as addNotification } from '../notifications/actionCreators'
-import { deselect } from '../todo/actionCreators'
 import * as actionCreators from './actionCreators'
-
-function* routeTo() {
-  while (true) {
-    const action = yield take(actionTypes.ROUTE_TO)
-    const isInitial = yield select(state => state.todosState.meta.isInitial)
-
-    if (action.meta.isExact) {
-      // Deselect todo
-      yield put(deselect())
-    }
-
-    if (isInitial) {
-      // Fetch todos if meta is initial
-      yield put(actionCreators.fetch())
-    }
-  }
-}
 
 function* fetch() {
   while (true) {
@@ -44,7 +26,6 @@ function* fetch() {
 
 export default function* rootSaga() {
   yield all([
-    routeTo,
     fetch,
   ].map(saga => fork(saga)))
 }

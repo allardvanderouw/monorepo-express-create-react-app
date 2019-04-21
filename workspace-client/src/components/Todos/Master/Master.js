@@ -18,15 +18,16 @@ const styleSheet = theme => ({
 class MasterComponent extends PureComponent {
   static propTypes = {
     classes: PropTypes.object.isRequired,
+    selectedId: PropTypes.string,
   }
 
   render() {
-    const { classes } = this.props
+    const { classes, selectedId } = this.props
 
     return (
       <Grid container className={classes.container}>
         <FilterContainer />
-        <ListContainer />
+        <ListContainer selectedId={selectedId} />
       </Grid>
     )
   }

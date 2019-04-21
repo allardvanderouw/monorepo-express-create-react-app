@@ -1,12 +1,5 @@
 import * as actionTypes from './actionTypes'
 
-export const routeTo = isExact => ({
-  type: actionTypes.ROUTE_TO,
-  meta: {
-    isExact,
-  },
-})
-
 export const refresh = () => ({ type: actionTypes.REFRESH })
 
 export const fetch = () => ({ type: actionTypes.FETCH })

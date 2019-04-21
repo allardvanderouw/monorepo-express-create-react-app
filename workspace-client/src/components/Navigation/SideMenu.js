@@ -14,17 +14,25 @@ const styleSheet = theme => ({
   menuList: {
     width: drawerWidth,
     paddingTop: 0,
+    flex: 1,
   },
   menuHeader: {
-    '@media (min-width:0px) and (orientation: landscape)': { height: theme.mixins.toolbar['@media (min-width:0px) and (orientation: landscape)'].minHeight },
-    '@media (min-width:600px)': { height: theme.mixins.toolbar['@media (min-width:600px)'].minHeight },
+    '@media (min-width:0px) and (orientation: landscape)': {
+      height: theme.mixins.toolbar['@media (min-width:0px) and (orientation: landscape)'].minHeight,
+    },
+    '@media (min-width:600px)': {
+      height: theme.mixins.toolbar['@media (min-width:600px)'].minHeight,
+    },
     height: theme.mixins.toolbar.minHeight,
   },
   menuIcon: {
-    marginLeft: -12,
+    marginLeft: -8,
   },
   drawerPaper: {
     position: 'relative',
+    display: 'flex',
+    overflow: 'hidden',
+    flexDirection: 'column',
     whiteSpace: 'nowrap',
     width: drawerWidth,
     transition: theme.transitions.create('width', {
@@ -38,8 +46,7 @@ const styleSheet = theme => ({
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
     }),
-    width: theme.spacing.unit * 7,
-    [theme.breakpoints.up('sm')]: { width: theme.spacing.unit * 9 },
+    width: theme.spacing.unit * 8,
   },
 })
 
@@ -58,7 +65,7 @@ class SideMenuComponent extends PureComponent {
       <List component="nav" onClick={hideSideMenu} className={classes.menuList}>
         <ListItem divider className={classes.menuHeader}>
           <ListItemText>
-            <Typography variant="title">
+            <Typography variant="h6">
               {i18n.t('Main:title')}
             </Typography>
           </ListItemText>

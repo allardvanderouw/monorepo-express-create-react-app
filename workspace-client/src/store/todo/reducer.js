@@ -1,23 +1,6 @@
 import { combineReducers } from 'redux'
 import * as actionTypes from './actionTypes'
 
-const selectedIdReducer = (state = null, action) => {
-  switch (action.type) {
-    case actionTypes.SELECT: {
-      return action.meta._id
-    }
-
-    case actionTypes.CREATE:
-    case actionTypes.DESELECT: {
-      return null
-    }
-
-    default: {
-      return state
-    }
-  }
-}
-
 const initialTodoState = {
   title: '',
   description: '',
@@ -26,9 +9,8 @@ const initialTodoState = {
 }
 const todoReducer = (state = initialTodoState, action) => {
   switch (action.type) {
-    case actionTypes.CREATE:
-    case actionTypes.SELECT:
-    case actionTypes.DESELECT: {
+    case actionTypes.FETCH:
+    case actionTypes.CLEAR: {
       return initialTodoState
     }
 
@@ -61,7 +43,7 @@ const initialMetaState = {
 }
 const metaReducer = (state = initialMetaState, action) => {
   switch (action.type) {
-    case actionTypes.DESELECT: {
+    case actionTypes.FETCH: {
       return initialMetaState
     }
 
@@ -164,7 +146,6 @@ const metaReducer = (state = initialMetaState, action) => {
 }
 
 export default combineReducers({
-  selectedId: selectedIdReducer,
   todo: todoReducer,
   meta: metaReducer,
 })

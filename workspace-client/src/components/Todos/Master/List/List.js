@@ -11,6 +11,7 @@ import Loading from '../../../Shared/Loading'
 const styleSheet = theme => ({
   content: {
     flex: '1',
+    width: '100%',
     backgroundColor: theme.palette.background.paper,
     borderRight: `1px solid ${theme.palette.divider}`,
     overflow: 'scroll',
